@@ -4,10 +4,11 @@ import requests
 import shutil
 
 # Folder path you want to scan
-USE_VIRUSTOTAL = True
+USE_VIRUSTOTAL = 0
+ONE_GAME = 0
 API_KEY_PATH = "API_KEY.txt"
 DESTINATION_FOLDER = "copied_files"
-FOLDER_PATH = "..\\mega\\Enishia_and_the_Binding_Brand_v1.06-Steam"
+FOLDER_PATH = "..\\google_drive"
 SKIP_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'bmp', 'wav', 'mp3', 'ogg', 'txt', 'json', 'xml', 'css', 'efkefc', 'bdic', 'db', 'efkmat', 'efkmodel', 'ttf', 'woff', 'otf', 'dat', 'pak', 'vdf', 'bin', 'wasm'}
 TO_NOT_SKIP_EXTENSIONS = {'exe', 'dll', 'bat', 'cmd', 'js', 'vbs', 'py', 'sh', 'so', 'zip', 'rar', '7z', 'htm'}
 
@@ -115,7 +116,7 @@ def should_skip_file(file_path, new_extensions):
     
     return True
 
-def analyze_directory(directory, analyzed_files, analyzed_folders, new_extensions, files_to_copy, new_files, completed_folders):
+def analyze_directory(directory, analyzed_files, analyzed_folders, new_extensions, files_to_copy, new_files, completed_folders, files_per_game, lvl0=0):
     """Recursively analyze files in the directory before its subdirectories."""
     # Process all files in the current directory
     for entry in os.scandir(directory):
@@ -126,15 +127,18 @@ def analyze_directory(directory, analyzed_files, analyzed_folders, new_extension
             if file_path in analyzed_files:
                 continue
             if USE_VIRUSTOTAL:
-                print("\n")
-            print(f"[*] Uploading file: {file_path}")
+                print(f"\n[*] Uploading file: {file_path}")
+            elif ONE_GAME:
+                print(file_path)
+            else:
+                files_per_game[-1].append(file_path)
             if not USE_VIRUSTOTAL:
                 files_to_copy.append(file_path)
                 continue
             analysis_id = upload_file_to_virustotal(file_path)
             if analysis_id == -1:
                 return -1
-            # analysis_id = "ZjFhYjQzYzU5ZTUwMTBlNzhjNmI3ZWU4YjQwMTU1YTU6MTczNTEzMzU4Nw=="
+            # analysis_id = "NmUzMzkyNWI3MDlkZWU0MmZkODg4MzcxNzJlYzdiYjA6MTczNTIxNzU1MQ=="
             if not analysis_id:
                 continue
             report = None
@@ -158,7 +162,9 @@ def analyze_directory(directory, analyzed_files, analyzed_folders, new_extension
     for entry in os.scandir(directory):
         if entry.is_dir():
             if entry.path not in analyzed_folders:
-                if analyze_directory(entry.path, analyzed_files, analyzed_folders, new_extensions, files_to_copy, new_files, completed_folders) == -1:
+                if lvl0:
+                    files_per_game.append([])
+                if analyze_directory(entry.path, analyzed_files, analyzed_folders, new_extensions, files_to_copy, new_files, completed_folders, files_per_game) == -1:
                     return -1
     completed_folders.append(directory)
 
@@ -192,18 +198,26 @@ def main():
     completed_folders = []
     analyzed_files = load_analyzed_files(ANALYZED_FILES_RECORD)
     analyzed_folders = load_analyzed_folders(ANALYZED_FOLDER_RECORD)
-    analyze_directory(FOLDER_PATH, analyzed_files, analyzed_folders, new_extensions, files_to_copy, new_files, completed_folders)
+    files_per_game = []
+    analyze_directory(FOLDER_PATH, analyzed_files, analyzed_folders, new_extensions, files_to_copy, new_files, completed_folders, files_per_game, 1)
     print("new_extensions : ", new_extensions)
     if USE_VIRUSTOTAL:
-        append_to_record(ANALYZED_FILES_RECORD, "\n".join(files_to_copy))
+        append_to_record(ANALYZED_FILES_RECORD, "\n".join(new_files))
         append_to_record(ANALYZED_FOLDER_RECORD, "\n".join(completed_folders))
     else:
+        if not ONE_GAME:
+            files_per_game = [files for files in files_per_game if files]
+            files_per_game.sort(key=lambda x: len(x))
+            for i, files in enumerate(files_per_game):
+                print(f"Game {i+1} has {len(files)} files")
+                for file in files:
+                    print(file)
         to_copy = input("Do you want to copy the files? (Y/n) ")
         if to_copy.lower() != "n":
             copy_files(files_to_copy, DESTINATION_FOLDER)
             to_update_record_input = input("Do you want to update the record file? (Y/n) ")
             if to_update_record_input.lower() != "n":
-                append_to_record(ANALYZED_FILES_RECORD, "\n".join(files_to_copy))
+                append_to_record(ANALYZED_FILES_RECORD, "\n".join(new_files))
                 append_to_record(ANALYZED_FOLDER_RECORD, "\n".join(completed_folders))
 
 if __name__ == "__main__":

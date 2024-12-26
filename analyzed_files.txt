@@ -364,3 +364,5 @@
 ..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\js\plugins\CharaEmploy.js
 ..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\js\plugins\CharaMake.js
 ..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\js\plugins\CommonInterceptor.js
+
+
