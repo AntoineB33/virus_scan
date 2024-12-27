@@ -364,5 +364,8 @@
 ..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\js\plugins\CharaEmploy.js
 ..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\js\plugins\CharaMake.js
 ..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\js\plugins\CommonInterceptor.js
-
-
+..\google_drive\Ambrosia_1.07-20240905T191900Z-001\Ambrosia_1.07\Ambrosia 1.07\d3dcompiler_47.dll
+..\google_drive\Ambrosia_1.07-20240905T191900Z-001\Ambrosia_1.07\Ambrosia 1.07\ffmpeg.dll
+..\google_drive\Ambrosia_1.07-20240905T191900Z-001\Ambrosia_1.07\Ambrosia 1.07\Game.exe
+..\google_drive\Ambrosia_1.07-20240905T191900Z-001\Ambrosia_1.07\Ambrosia 1.07\libEGL.dll
+..\google_drive\Ambrosia_1.07-20240905T191900Z-001\Ambrosia_1.07\Ambrosia 1.07\libGLESv2.dll

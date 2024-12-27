@@ -4,13 +4,53 @@ import requests
 import shutil
 
 # Folder path you want to scan
-USE_VIRUSTOTAL = 0
+USE_VIRUSTOTAL = 1
 ONE_GAME = 0
 API_KEY_PATH = "API_KEY.txt"
 DESTINATION_FOLDER = "copied_files"
 FOLDER_PATH = "..\\google_drive"
-SKIP_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'bmp', 'wav', 'mp3', 'ogg', 'txt', 'json', 'xml', 'css', 'efkefc', 'bdic', 'db', 'efkmat', 'efkmodel', 'ttf', 'woff', 'otf', 'dat', 'pak', 'vdf', 'bin', 'wasm'}
-TO_NOT_SKIP_EXTENSIONS = {'exe', 'dll', 'bat', 'cmd', 'js', 'vbs', 'py', 'sh', 'so', 'zip', 'rar', '7z', 'htm'}
+PRIORITY_MAP = {
+    # Very high risk: directly executable or scripting
+    'exe': 1,
+    'dll': 1,
+    'bat': 1,
+    'cmd': 1,
+    'js': 1,
+    'vbs': 1,
+    'py': 1,
+    'sh': 1,
+    'so': 1,
+    'wasm': 1,
+
+    # High risk: archives (could contain malicious files inside)
+    'zip': 2,
+    'rar': 2,
+    '7z': 2,
+
+    # Medium risk: could contain code or be part of an exploit
+    'htm': 3,
+    'bin': 3,
+
+    # Data/pack files (can still embed code or configurations)
+    'dat': 4,
+    'pak': 4,
+    'vdf': 4,
+    'db': 4,
+
+    # Plain text or structured data: can contain macro-like content or scripts
+    'txt': 5,
+    'json': 5,
+    'xml': 5,
+    'css': 5
+}
+
+
+SKIP_EXTENSIONS = {
+    'png', 'jpg', 'jpeg', 'gif', 'bmp',     # Image files
+    'wav', 'mp3', 'ogg',                    # Audio files
+    'ttf', 'woff', 'otf',                   # Font files
+    'efkefc', 'efkmat', 'efkmodel', 'bdic'  # Proprietary/engine data files
+}
 
 # File to store paths of analyzed files
 ANALYZED_FILES_RECORD = "analyzed_files.txt"
@@ -95,34 +135,30 @@ def get_analysis_report(analysis_id):
         print(f"[ERROR] Failed to retrieve report for analysis ID {analysis_id}")
         return None
 
-def should_skip_file(file_path, new_extensions):
+def should_skip_file(file_path, new_extensions, priority_lvl):
     """Determine if a file should be skipped based on its extension or prefix."""
     file_extension = os.path.splitext(file_path)[1].lower()[1:]
-    
-    # Check for exact match
-    if file_extension in SKIP_EXTENSIONS:
-        return True
     
     # Check for prefix match (e.g., '.ogg_')
     for ext in SKIP_EXTENSIONS | new_extensions:
         if file_extension.startswith(ext):
             return True
     
-    for ext in TO_NOT_SKIP_EXTENSIONS:
+    for ext, priority in PRIORITY_MAP.items():
         if file_extension.startswith(ext):
-            return False
+            return priority != priority_lvl
 
     new_extensions.add(file_extension)
     
     return True
 
-def analyze_directory(directory, analyzed_files, analyzed_folders, new_extensions, files_to_copy, new_files, completed_folders, files_per_game, lvl0=0):
+def analyze_directory(directory, analyzed_files, analyzed_folders, new_extensions, files_to_copy, new_files, completed_folders, files_per_game, priority_lvl, time_to_wait, time_increment, min_time, max_time, lvl0=0):
     """Recursively analyze files in the directory before its subdirectories."""
     # Process all files in the current directory
     for entry in os.scandir(directory):
         if entry.is_file():
             file_path = entry.path
-            if should_skip_file(file_path, new_extensions):
+            if should_skip_file(file_path, new_extensions, priority_lvl):
                 continue
             if file_path in analyzed_files:
                 continue
@@ -138,16 +174,22 @@ def analyze_directory(directory, analyzed_files, analyzed_folders, new_extension
             analysis_id = upload_file_to_virustotal(file_path)
             if analysis_id == -1:
                 return -1
-            # analysis_id = "NmUzMzkyNWI3MDlkZWU0MmZkODg4MzcxNzJlYzdiYjA6MTczNTIxNzU1MQ=="
+            # analysis_id = "NDA4NDE3ZmE0ZjIyYjM2Y2U4YjliMjJlM2M4ZDE4YzQ6MTczNTMwMDQ0NQ===="
             if not analysis_id:
                 continue
             report = None
+            nb_analysis_req = 0
             while not report or (stats:=report["data"]["attributes"]["stats"])['undetected'] == 0 and stats['suspicious'] == 0 and stats['malicious'] == 0 and stats['harmless'] == 0:
                 print(f"[*] Analysis ID received: {analysis_id}")
-                time.sleep(5)
+                if nb_analysis_req and time_to_wait + time_increment <= max_time:
+                    time_to_wait += time_increment
+                time.sleep(time_to_wait)
                 report = get_analysis_report(analysis_id)
                 if report == -1:
                     return -1
+                nb_analysis_req += 1
+            if nb_analysis_req == 1 and time_to_wait - time_increment >= min_time:
+                time_to_wait -= time_increment
             stats = report["data"]["attributes"]["stats"]
             print(f"  - Harmless: {stats['harmless']}")
             print(f"  - Malicious: {stats['malicious']}")
@@ -157,6 +199,8 @@ def analyze_directory(directory, analyzed_files, analyzed_folders, new_extension
                 print("[ALERT] Suspicious or malicious file detected. Stopping the scan.")
                 return -1
             new_files.append(file_path)
+            if USE_VIRUSTOTAL:
+                append_to_record(ANALYZED_FILES_RECORD, file_path)
     
     # Recursively process each subdirectory
     for entry in os.scandir(directory):
@@ -164,9 +208,14 @@ def analyze_directory(directory, analyzed_files, analyzed_folders, new_extension
             if entry.path not in analyzed_folders:
                 if lvl0:
                     files_per_game.append([])
-                if analyze_directory(entry.path, analyzed_files, analyzed_folders, new_extensions, files_to_copy, new_files, completed_folders, files_per_game) == -1:
+                time_to_wait = analyze_directory(entry.path, analyzed_files, analyzed_folders, new_extensions, files_to_copy, new_files, completed_folders, files_per_game, priority_lvl, time_to_wait, time_increment, min_time, max_time)
+                if time_to_wait== -1:
                     return -1
-    completed_folders.append(directory)
+    if priority_lvl == max(PRIORITY_MAP.values()):
+        completed_folders.append(directory)
+        if USE_VIRUSTOTAL:
+            append_to_record(ANALYZED_FOLDER_RECORD, directory)
+    return time_to_wait
 
 
 def copy_files(file_paths, destination_folder):
@@ -192,6 +241,10 @@ def copy_files(file_paths, destination_folder):
             print(f"File not found: {file_path}")
 
 def main():
+    time_to_wait = 5
+    time_increment = 5
+    min_time = 5
+    max_time = 60
     files_to_copy = []
     new_extensions = set()
     new_files = []
@@ -199,12 +252,12 @@ def main():
     analyzed_files = load_analyzed_files(ANALYZED_FILES_RECORD)
     analyzed_folders = load_analyzed_folders(ANALYZED_FOLDER_RECORD)
     files_per_game = []
-    analyze_directory(FOLDER_PATH, analyzed_files, analyzed_folders, new_extensions, files_to_copy, new_files, completed_folders, files_per_game, 1)
+    for priority_lvl in sorted(PRIORITY_MAP.values()):
+        time_to_wait = analyze_directory(FOLDER_PATH, analyzed_files, analyzed_folders, new_extensions, files_to_copy, new_files, completed_folders, files_per_game, priority_lvl, time_to_wait, time_increment, min_time, max_time, 1)
+        if time_to_wait == -1:
+            return -1
     print("new_extensions : ", new_extensions)
-    if USE_VIRUSTOTAL:
-        append_to_record(ANALYZED_FILES_RECORD, "\n".join(new_files))
-        append_to_record(ANALYZED_FOLDER_RECORD, "\n".join(completed_folders))
-    else:
+    if not USE_VIRUSTOTAL:
         if not ONE_GAME:
             files_per_game = [files for files in files_per_game if files]
             files_per_game.sort(key=lambda x: len(x))
