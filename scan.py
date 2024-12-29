@@ -8,7 +8,7 @@ USE_VIRUSTOTAL = 1
 ONE_GAME = 0
 API_KEY_PATH = "API_KEY.txt"
 DESTINATION_FOLDER = "copied_files"
-FOLDER_PATH = "..\\google_drive"
+FOLDER_PATH = "..\\to_scan"
 PRIORITY_MAP = {
     # Very high risk: directly executable or scripting
     'exe': 1,
@@ -103,7 +103,7 @@ def upload_file_to_virustotal(file_path):
             if response.status_code != 200:
                 print(f"[ERROR] Could not upload file: {file_path}")
                 print(response_json)
-                return None
+                return -1
             
             # Extract the analysis ID
             analysis_id = response_json["data"]["id"]
@@ -112,11 +112,11 @@ def upload_file_to_virustotal(file_path):
         except requests.exceptions.JSONDecodeError:
             print(f"[ERROR] Failed to parse JSON response for file: {file_path}")
             print(f"Response content: {response.text}")
-            return None
+            return -1
 
         except requests.exceptions.RequestException as e:
             print(f"[ERROR] Request failed: {e}")
-            return None
+            return -1
 
 # Helper function to retrieve analysis results
 def get_analysis_report(analysis_id):
@@ -173,6 +173,9 @@ def analyze_directory(directory, analyzed_files, analyzed_folders, new_extension
                 continue
             analysis_id = upload_file_to_virustotal(file_path)
             if analysis_id == -1:
+                new_files.append(file_path)
+                if USE_VIRUSTOTAL:
+                    append_to_record(ANALYZED_FILES_RECORD, file_path)
                 return -1
             # analysis_id = "NDA4NDE3ZmE0ZjIyYjM2Y2U4YjliMjJlM2M4ZDE4YzQ6MTczNTMwMDQ0NQ===="
             if not analysis_id:

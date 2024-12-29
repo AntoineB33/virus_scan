@@ -424,7 +424,8 @@
 ../mega/Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\img\tilesets
 ../mega/Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\img\titles1
 ../mega/Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\img\titles2
-../mega/Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\img..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm
+../mega/Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\img
+..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm
 ..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs
 ..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs
 ..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice
@@ -468,5 +469,3 @@
 ..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\img\titles1
 ..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\img\titles2
 ..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\img..
-
-

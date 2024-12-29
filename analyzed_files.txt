@@ -1,371 +1,594 @@
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\credits.html
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\d3dcompiler_47.dll
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\ffmpeg.dll
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\Game.exe
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\icudtl.dat
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\index.html
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\libEGL.dll
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\libGLESv2.dll
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\node.dll
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\notification_helper.exe
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\nw.dll
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\nw_100_percent.pak
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\nw_200_percent.pak
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\nw_elf.dll
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\package.json
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\resources.pak
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\Script.vdf
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\v8_context_snapshot.bin
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\ARA_AG2_08.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\ARA_AG2_17.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\ARA_AG2_20.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\ARA_AG2_22.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\ARA_AG_03.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\ARA_AG_06.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\ARA_AG_14.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\ARA_AG_16_Alone.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\ARA_AG_22.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\ARA_AG_Omake.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\ARA_AKS0_01_Starborn child_part_B.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\ARA_AKS0_02_Contract of the heavens and mortals.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\ARA_AKS0_04.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\ARA_AKS0_10_Shadow casting over city.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\ARA_AKS0_10_Shadow casting over city_inferno.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\ARA_AKS0_16_Wings for infinity and beyond.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\ARA_AKS1_07_Rainy moning.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\ARA_AKS1_10_Battle 01.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\ARA_AKS2_16_Door to another.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\ARA_AKS2_18_War wounds.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\ARA_AKS3_06_Conspiracy.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\ARA_AKS3_14_Than a bouquet.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\ARA_AKS4_05_Sea People Ruins.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\ARA_AKS4_08_Doll house.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\ARA_AKS4_13_Reverse clock castle.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\ARA_AKS5_08_Voice of god.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\ARA_AKS6_05_Love entrusted to ice.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\ARA_AKS6_10_House of Darkness.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\ARA_Forestia_03.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\ARA_icyalove_04.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\ARA_KAZE_03.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\ARA_LAW_Dungeon05.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\ARA_LAW_Dungeon07.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\ARA_LAW_Dungeon08.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\ARA_LAW_Dungeon09.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\ARA_LAW_Dungeon11.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\ARA_LAW_Dungeon13.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\ARA_LAW_Dungeon14.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\ARA_MF01_05_BossBattle01.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\ARA_MF01_06_BossBattle02.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\ARA_MF01_11_Bar01.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\ARA_MoM_bgm11.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\ARA_SY10_01_Phantom.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\ARA_VILCANO_09.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\beemu_04myuu_RabbitHole_Wonderland.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\beemu_arab_04.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\beemu_arab_10.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\beemu_BadEnd_School.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\beemu_BadEnd_University.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\beemu_fa_27.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\beemu_gothic_01SingingDoll.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\beemu_gothic_12.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\beemu_gothic_16.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\beemu_gothic_22.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\beemu_gothic_27.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\beemu_minzoku_16.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\CK_Dungeon_-_Spider_Nest.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\CK_Dungeon_-_Thorn_Maze.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\DLC_FMP1_Town1.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\DLC_WMP1_Battle4.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\Eadd_Dungeon 1.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\Eadd_Dungeon 2.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\KBF_Battle_Nomal_06.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\KBF_Dungeon_Natural_10_B.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\KBF_Dungeon_Natural_EW01.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\KBF_Dungeon_Unnatural_03.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\KBF_Event_Mystic_EW02.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\KBF_Event_Negative_EW01_A.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\KBF_Event_Negative_EW03.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\KBF_Event_Positive_02.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\KBF_Event_Positive_EW02.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\KBF_Heart_EW01.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\KBF_Suspense_06.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\KBF_Suspense_09.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\KBF_Town_Castle_02.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\KBF_Town_City_EW02.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\KBF_Town_City_EW05.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\Medival_Field_-_Adventurers_Road.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\Medival_Town_-_Noble_Houses.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\MoM_bgm12.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\MQM_Dungeon_-_Tunnel_Rats.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgm\Sinister_Suspense Celeste.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\Clock.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\Darkness.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\Drips.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\Fire1.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\muryo_08.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\muryo_Amb_Marche_Dans_Village.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\Night.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\onjin_reel.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\Quake1.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\Quake2.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\Rain2.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\River.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\Sea.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\SH_bar.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\SH_park.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\SH_rain.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\Storm2.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voicebloom_custom_bath_bgs.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\Wind1.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\Wind2.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\Wind3.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\Wind4.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\Wind5.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\bob_hanzjoc.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\bob_hanzjoc3.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\bob_hanzjoc_w.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\bob_lotion1-3.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\bob_lotion1-4.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\bob_rub.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\bob_rub2.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\bob_rub3.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\bob_sfx_fast_normal.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\bob_sfx_fast_normal2.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\bob_sfx_fast_normal3.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\bob_sfx_fast_right2.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\bob_sfx_middle_normal.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\bob_sfx_slow_heavy.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\bob_sfx_slow_heavy2.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\bob_sfx_slow_normal.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\bob_sfx_slow_normal2.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\DL_lotion01.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\DL_lotion02.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\kiriminko_poston_fast.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\kiriminko_poston_middle.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\kiriminko_poston_slow.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\kiriminko_vobe4.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\okojyo_bathsfx_fast01.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\okojyo_bathsfx_middle01.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\okojyo_berokoss9.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\okojyo_gucho1.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\okojyo_gucho2.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\okojyo_kuchu2.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\okojyo_panzuri_fast3.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\okojyo_panzuri_normal3.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\okojyo_panzuri_slow2.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\okojyo_splash.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\okojyo_tentacle01.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\pierrot_poston_bed01.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\pierrot_poston_bed02.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\pierrot_rub01.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\pierrot_rub_wet01.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\pierrot_rub_wet02.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\pierrot_rub_wet03.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\pierrot_rub_wet04.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\pierrot_rub_wet05.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\pierrot_rub_wet06.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\pierrot_vobe_long01.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\pierrot_vobe_long02.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\pierrot_vobe_long03.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\SH_oppan_cloth.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\SSL_denma2_loop.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\SSL_poston_double.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\SSL_poston_fast.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\SSL_poston_normal.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\SSL_poston_slow.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\SSL_poston_vobe_fast.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\SSL_rotor1_loop.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\SSL_rotor2_loop.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\voicebloom_08_kosuru.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\arobgs\voicebloom_touchcloth2.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\bob_handjob.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\bob_handjob3.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\bob_handjob_w.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\bob_lotion1-3.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\bob_lotion1-4.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\bob_rub.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\bob_rub2.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\bob_rub3.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\bob_sex_fast_normal.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\bob_sex_fast_normal2.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\bob_sex_fast_normal3.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\bob_sex_fast_right2.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\bob_sex_middle_normal.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\bob_sex_slow_heavy.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\bob_sex_slow_heavy2.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\bob_sex_slow_normal.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\bob_sex_slow_normal2.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\DL_lotion01.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\DL_lotion02.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\kiriminko_piston_fast.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\kiriminko_piston_middle.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\kiriminko_piston_slow.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\kiriminko_vibe4.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\okojyo_bathsex_fast01.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\okojyo_bathsex_middle01.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\okojyo_berokiss9.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\okojyo_gucho1.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\okojyo_gucho2.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\okojyo_kuchu2.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\okojyo_paizuri_fast3.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\okojyo_paizuri_normal3.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\okojyo_paizuri_slow2.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\okojyo_splash.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\okojyo_tentacle01.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\pierrot_piston_bed01.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\pierrot_piston_bed02.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\pierrot_rub01.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\pierrot_rub_wet01.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\pierrot_rub_wet02.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\pierrot_rub_wet03.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\pierrot_rub_wet04.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\pierrot_rub_wet05.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\pierrot_rub_wet06.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\pierrot_vibe_long01.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\pierrot_vibe_long02.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\pierrot_vibe_long03.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\SH_oppai_cloth.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\SSL_denma2_loop.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\SSL_piston_double.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\SSL_piston_fast.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\SSL_piston_normal.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\SSL_piston_slow.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\SSL_piston_vibe_fast.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\SSL_rotor1_loop.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\SSL_rotor2_loop.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\voicebloom_08_kosuru.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\erobgs\voicebloom_touchcloth2.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_aegi-01.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_aegi-02.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_aegi-03.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_aegi-04.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_aegi-05.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_aegi-06.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_aegi-07.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_aegi-08.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_aegi-09.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_aegi-10.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_aegi-11.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_aegi-12.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_aegi-13.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_aegi-14.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_aegi-15.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_aegi-16.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_aegi-17.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_aegi-18.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_aegi-19.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_aegi-20.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_aegi-21.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_aegi-22.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_aegi-23.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_aegi-24.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_aegi-25.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_aegi-26.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_aegi-27.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_aegi-28.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_aegi-29.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_aegi-30.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_aegi-31.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_aegi-32.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_aegi-33.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_aegi-34.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_aegi-35.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_breath-01.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_breath-02.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_breath-03.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_breath-04.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_breath-05.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_breath-06.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_breath-07.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_breath-08.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_breath-09.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_breath-10.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_breath-11.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_breath-12.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_breath-13.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_chupa-01.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_chupa-02.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_chupa-03.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_chupa-04.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_chupa-05.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_chupa-06.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_chupa-07.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_chupa-08.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_chupa-09.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_chupa-10.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_chupa-11.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_chupa-12.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_chupa-13.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_chupa-14.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_chupa-15.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_bgv_chupa-16.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_cv_aegi-01.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_cv_aegi-02.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_cv_aegi-03.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_cv_aegi-04.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_cv_aegi-05.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_cv_aegi-06.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_cv_aegi-07.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_cv_aegi-08.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_cv_aegi-09.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_cv_aegi-10.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_cv_aegi-11.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_cv_aegi-12.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_cv_aegi-13.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_cv_aegi-14.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_cv_aegi-15.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_cv_aegi-16.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_cv_aegi-17.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_cv_aegi-18.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_cv_aegi-19.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_cv_aegi-20.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_cv_aegi-21.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_cv_aegi-22.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_cv_aegi-23.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_cv_aegi-24.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_cv_aegi-25.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_cv_aegi-26.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\audio\bgs\voice\enisia_cv_aegi-27.ogg_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\Cosplay DLC\index.html
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\Cosplay DLC\gallery\Thumbs.db
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\Dictionaries\uk-UA-4-0.bdic
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\effects\Absorb.efkefc
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\effects\Arrow.efkefc
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\effects\Model\Ball.efkmodel
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\fonts\apliminchyo.otf
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\fonts\azuki.woff
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\img\battlebacks1\Asphalt1_nvt.png_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\img\battlebacks1\Asphalt2_nvt.png_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\img\battlebacks1\Bamboomat1_nvt.png_
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\js\main.js
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\js\plugins.js
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\js\rmmz_core.js
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\js\rmmz_managers.js
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\js\rmmz_objects.js
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\js\rmmz_scenes.js
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\js\rmmz_sprites.js
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\js\rmmz_windows.js
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\js\libs\effekseer.min.js
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\js\libs\effekseer.wasm
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\js\libs\localforage.min.js
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\js\libs\pako.min.js
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\js\libs\pixi.js
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\js\libs\vorbisdecoder.js
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\js\plugins\111_InputForm.js
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\js\plugins\AltKeyPatch.js
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\js\plugins\AnimationByPoint.js
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\js\plugins\ARTM_PlayerSensorMZ.js
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\js\plugins\BackUpDatabase.js
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\js\plugins\ChangeOutlineColor.js
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\js\plugins\CharacterGraphicExtend.js
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\js\plugins\CharacterPictureManager.js
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\js\plugins\CharacterPictureManagerExtend.js
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\js\plugins\CharacterPopupDamage.js
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\js\plugins\CharaEmploy.js
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\js\plugins\CharaMake.js
-..\mega\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\js\plugins\CommonInterceptor.js
-..\google_drive\Ambrosia_1.07-20240905T191900Z-001\Ambrosia_1.07\Ambrosia 1.07\d3dcompiler_47.dll
-..\google_drive\Ambrosia_1.07-20240905T191900Z-001\Ambrosia_1.07\Ambrosia 1.07\ffmpeg.dll
-..\google_drive\Ambrosia_1.07-20240905T191900Z-001\Ambrosia_1.07\Ambrosia 1.07\Game.exe
-..\google_drive\Ambrosia_1.07-20240905T191900Z-001\Ambrosia_1.07\Ambrosia 1.07\libEGL.dll
-..\google_drive\Ambrosia_1.07-20240905T191900Z-001\Ambrosia_1.07\Ambrosia 1.07\libGLESv2.dll
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\credits.html
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\d3dcompiler_47.dll
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\ffmpeg.dll
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\Game.exe
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\icudtl.dat
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\index.html
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\libEGL.dll
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\libGLESv2.dll
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\node.dll
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\notification_helper.exe
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\nw.dll
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\nw_100_percent.pak
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\nw_200_percent.pak
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\nw_elf.dll
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\package.json
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\resources.pak
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\Script.vdf
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\v8_context_snapshot.bin
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\ARA_AG2_08.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\ARA_AG2_17.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\ARA_AG2_20.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\ARA_AG2_22.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\ARA_AG_03.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\ARA_AG_06.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\ARA_AG_14.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\ARA_AG_16_Alone.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\ARA_AG_22.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\ARA_AG_Omake.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\ARA_AKS0_01_Starborn child_part_B.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\ARA_AKS0_02_Contract of the heavens and mortals.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\ARA_AKS0_04.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\ARA_AKS0_10_Shadow casting over city.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\ARA_AKS0_10_Shadow casting over city_inferno.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\ARA_AKS0_16_Wings for infinity and beyond.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\ARA_AKS1_07_Rainy moning.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\ARA_AKS1_10_Battle 01.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\ARA_AKS2_16_Door to another.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\ARA_AKS2_18_War wounds.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\ARA_AKS3_06_Conspiracy.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\ARA_AKS3_14_Than a bouquet.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\ARA_AKS4_05_Sea People Ruins.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\ARA_AKS4_08_Doll house.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\ARA_AKS4_13_Reverse clock castle.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\ARA_AKS5_08_Voice of god.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\ARA_AKS6_05_Love entrusted to ice.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\ARA_AKS6_10_House of Darkness.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\ARA_Forestia_03.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\ARA_icyalove_04.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\ARA_KAZE_03.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\ARA_LAW_Dungeon05.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\ARA_LAW_Dungeon07.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\ARA_LAW_Dungeon08.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\ARA_LAW_Dungeon09.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\ARA_LAW_Dungeon11.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\ARA_LAW_Dungeon13.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\ARA_LAW_Dungeon14.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\ARA_MF01_05_BossBattle01.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\ARA_MF01_06_BossBattle02.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\ARA_MF01_11_Bar01.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\ARA_MoM_bgm11.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\ARA_SY10_01_Phantom.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\ARA_VILCANO_09.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\beemu_04myuu_RabbitHole_Wonderland.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\beemu_arab_04.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\beemu_arab_10.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\beemu_BadEnd_School.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\beemu_BadEnd_University.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\beemu_fa_27.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\beemu_gothic_01SingingDoll.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\beemu_gothic_12.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\beemu_gothic_16.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\beemu_gothic_22.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\beemu_gothic_27.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\beemu_minzoku_16.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\CK_Dungeon_-_Spider_Nest.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\CK_Dungeon_-_Thorn_Maze.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\DLC_FMP1_Town1.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\DLC_WMP1_Battle4.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\Eadd_Dungeon 1.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\Eadd_Dungeon 2.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\KBF_Battle_Nomal_06.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\KBF_Dungeon_Natural_10_B.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\KBF_Dungeon_Natural_EW01.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\KBF_Dungeon_Unnatural_03.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\KBF_Event_Mystic_EW02.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\KBF_Event_Negative_EW01_A.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\KBF_Event_Negative_EW03.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\KBF_Event_Positive_02.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\KBF_Event_Positive_EW02.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\KBF_Heart_EW01.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\KBF_Suspense_06.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\KBF_Suspense_09.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\KBF_Town_Castle_02.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\KBF_Town_City_EW02.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\KBF_Town_City_EW05.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\Medival_Field_-_Adventurers_Road.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\Medival_Town_-_Noble_Houses.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\MoM_bgm12.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\MQM_Dungeon_-_Tunnel_Rats.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgm\Sinister_Suspense Celeste.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\Clock.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\Darkness.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\Drips.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\Fire1.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\muryo_08.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\muryo_Amb_Marche_Dans_Village.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\Night.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\onjin_reel.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\Quake1.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\Quake2.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\Rain2.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\River.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\Sea.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\SH_bar.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\SH_park.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\SH_rain.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\Storm2.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voicebloom_custom_bath_bgs.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\Wind1.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\Wind2.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\Wind3.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\Wind4.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\Wind5.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\bob_hanzjoc.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\bob_hanzjoc3.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\bob_hanzjoc_w.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\bob_lotion1-3.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\bob_lotion1-4.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\bob_rub.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\bob_rub2.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\bob_rub3.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\bob_sfx_fast_normal.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\bob_sfx_fast_normal2.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\bob_sfx_fast_normal3.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\bob_sfx_fast_right2.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\bob_sfx_middle_normal.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\bob_sfx_slow_heavy.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\bob_sfx_slow_heavy2.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\bob_sfx_slow_normal.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\bob_sfx_slow_normal2.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\DL_lotion01.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\DL_lotion02.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\kiriminko_poston_fast.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\kiriminko_poston_middle.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\kiriminko_poston_slow.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\kiriminko_vobe4.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\okojyo_bathsfx_fast01.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\okojyo_bathsfx_middle01.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\okojyo_berokoss9.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\okojyo_gucho1.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\okojyo_gucho2.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\okojyo_kuchu2.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\okojyo_panzuri_fast3.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\okojyo_panzuri_normal3.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\okojyo_panzuri_slow2.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\okojyo_splash.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\okojyo_tentacle01.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\pierrot_poston_bed01.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\pierrot_poston_bed02.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\pierrot_rub01.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\pierrot_rub_wet01.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\pierrot_rub_wet02.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\pierrot_rub_wet03.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\pierrot_rub_wet04.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\pierrot_rub_wet05.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\pierrot_rub_wet06.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\pierrot_vobe_long01.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\pierrot_vobe_long02.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\pierrot_vobe_long03.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\SH_oppan_cloth.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\SSL_denma2_loop.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\SSL_poston_double.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\SSL_poston_fast.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\SSL_poston_normal.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\SSL_poston_slow.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\SSL_poston_vobe_fast.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\SSL_rotor1_loop.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\SSL_rotor2_loop.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\voicebloom_08_kosuru.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\arobgs\voicebloom_touchcloth2.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\bob_handjob.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\bob_handjob3.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\bob_handjob_w.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\bob_lotion1-3.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\bob_lotion1-4.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\bob_rub.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\bob_rub2.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\bob_rub3.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\bob_sex_fast_normal.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\bob_sex_fast_normal2.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\bob_sex_fast_normal3.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\bob_sex_fast_right2.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\bob_sex_middle_normal.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\bob_sex_slow_heavy.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\bob_sex_slow_heavy2.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\bob_sex_slow_normal.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\bob_sex_slow_normal2.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\DL_lotion01.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\DL_lotion02.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\kiriminko_piston_fast.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\kiriminko_piston_middle.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\kiriminko_piston_slow.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\kiriminko_vibe4.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\okojyo_bathsex_fast01.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\okojyo_bathsex_middle01.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\okojyo_berokiss9.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\okojyo_gucho1.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\okojyo_gucho2.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\okojyo_kuchu2.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\okojyo_paizuri_fast3.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\okojyo_paizuri_normal3.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\okojyo_paizuri_slow2.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\okojyo_splash.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\okojyo_tentacle01.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\pierrot_piston_bed01.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\pierrot_piston_bed02.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\pierrot_rub01.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\pierrot_rub_wet01.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\pierrot_rub_wet02.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\pierrot_rub_wet03.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\pierrot_rub_wet04.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\pierrot_rub_wet05.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\pierrot_rub_wet06.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\pierrot_vibe_long01.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\pierrot_vibe_long02.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\pierrot_vibe_long03.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\SH_oppai_cloth.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\SSL_denma2_loop.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\SSL_piston_double.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\SSL_piston_fast.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\SSL_piston_normal.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\SSL_piston_slow.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\SSL_piston_vibe_fast.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\SSL_rotor1_loop.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\SSL_rotor2_loop.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\voicebloom_08_kosuru.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\erobgs\voicebloom_touchcloth2.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_aegi-01.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_aegi-02.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_aegi-03.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_aegi-04.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_aegi-05.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_aegi-06.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_aegi-07.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_aegi-08.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_aegi-09.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_aegi-10.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_aegi-11.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_aegi-12.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_aegi-13.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_aegi-14.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_aegi-15.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_aegi-16.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_aegi-17.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_aegi-18.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_aegi-19.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_aegi-20.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_aegi-21.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_aegi-22.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_aegi-23.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_aegi-24.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_aegi-25.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_aegi-26.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_aegi-27.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_aegi-28.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_aegi-29.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_aegi-30.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_aegi-31.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_aegi-32.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_aegi-33.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_aegi-34.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_aegi-35.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_breath-01.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_breath-02.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_breath-03.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_breath-04.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_breath-05.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_breath-06.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_breath-07.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_breath-08.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_breath-09.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_breath-10.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_breath-11.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_breath-12.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_breath-13.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_chupa-01.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_chupa-02.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_chupa-03.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_chupa-04.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_chupa-05.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_chupa-06.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_chupa-07.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_chupa-08.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_chupa-09.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_chupa-10.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_chupa-11.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_chupa-12.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_chupa-13.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_chupa-14.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_chupa-15.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_bgv_chupa-16.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_cv_aegi-01.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_cv_aegi-02.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_cv_aegi-03.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_cv_aegi-04.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_cv_aegi-05.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_cv_aegi-06.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_cv_aegi-07.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_cv_aegi-08.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_cv_aegi-09.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_cv_aegi-10.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_cv_aegi-11.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_cv_aegi-12.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_cv_aegi-13.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_cv_aegi-14.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_cv_aegi-15.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_cv_aegi-16.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_cv_aegi-17.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_cv_aegi-18.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_cv_aegi-19.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_cv_aegi-20.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_cv_aegi-21.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_cv_aegi-22.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_cv_aegi-23.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_cv_aegi-24.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_cv_aegi-25.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_cv_aegi-26.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\audio\bgs\voice\enisia_cv_aegi-27.ogg_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\Cosplay DLC\index.html
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\Cosplay DLC\gallery\Thumbs.db
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\Dictionaries\uk-UA-4-0.bdic
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\effects\Absorb.efkefc
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\effects\Arrow.efkefc
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\effects\Model\Ball.efkmodel
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\fonts\apliminchyo.otf
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\fonts\azuki.woff
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\img\battlebacks1\Asphalt1_nvt.png_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\img\battlebacks1\Asphalt2_nvt.png_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\img\battlebacks1\Bamboomat1_nvt.png_
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\js\main.js
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\js\plugins.js
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\js\rmmz_core.js
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\js\rmmz_managers.js
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\js\rmmz_objects.js
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\js\rmmz_scenes.js
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\js\rmmz_sprites.js
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\js\rmmz_windows.js
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\js\libs\effekseer.min.js
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\js\libs\effekseer.wasm
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\js\libs\localforage.min.js
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\js\libs\pako.min.js
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\js\libs\pixi.js
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\js\libs\vorbisdecoder.js
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\js\plugins\111_InputForm.js
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\js\plugins\AltKeyPatch.js
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\js\plugins\AnimationByPoint.js
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\js\plugins\ARTM_PlayerSensorMZ.js
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\js\plugins\BackUpDatabase.js
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\js\plugins\ChangeOutlineColor.js
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\js\plugins\CharacterGraphicExtend.js
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\js\plugins\CharacterPictureManager.js
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\js\plugins\CharacterPictureManagerExtend.js
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\js\plugins\CharacterPopupDamage.js
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\js\plugins\CharaEmploy.js
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\js\plugins\CharaMake.js
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\js\plugins\CommonInterceptor.js
+..\to_scan\Beasts_in_the_Sun_EP1_Supporters_v8_1\BITS_EP1_Supporters_v8_1\BITSv8.exe
+..\to_scan\Beasts_in_the_Sun_EP1_Supporters_v8_1\BITS_EP1_Supporters_v8_1\BITSv8\Binaries\Win64\tbb12.dll
+..\to_scan\Beasts_in_the_Sun_EP1_Supporters_v8_1\BITS_EP1_Supporters_v8_1\Engine\Binaries\ThirdParty\DbgHelp\dbghelp.dll
+..\to_scan\Beasts_in_the_Sun_EP1_Supporters_v8_1\BITS_EP1_Supporters_v8_1\Engine\Binaries\ThirdParty\NVIDIA\GeForceNOW\Win64\GfnRuntimeSdk.dll
+..\to_scan\Beasts_in_the_Sun_EP1_Supporters_v8_1\BITS_EP1_Supporters_v8_1\Engine\Binaries\ThirdParty\NVIDIA\NVaftermath\Win64\GFSDK_Aftermath_Lib.x64.dll
+..\to_scan\Beasts_in_the_Sun_EP1_Supporters_v8_1\BITS_EP1_Supporters_v8_1\Engine\Binaries\ThirdParty\Ogg\Win64\VS2015\libogg_64.dll
+..\to_scan\Beasts_in_the_Sun_EP1_Supporters_v8_1\BITS_EP1_Supporters_v8_1\Engine\Binaries\ThirdParty\OpenXR\win64\openxr_loader.dll
+..\to_scan\Beasts_in_the_Sun_EP1_Supporters_v8_1\BITS_EP1_Supporters_v8_1\Engine\Binaries\ThirdParty\PhysX3\Win64\VS2015\ApexFramework_x64.dll
+..\to_scan\Beasts_in_the_Sun_EP1_Supporters_v8_1\BITS_EP1_Supporters_v8_1\Engine\Binaries\ThirdParty\PhysX3\Win64\VS2015\APEX_Clothing_x64.dll
+..\to_scan\Beasts_in_the_Sun_EP1_Supporters_v8_1\BITS_EP1_Supporters_v8_1\Engine\Binaries\ThirdParty\PhysX3\Win64\VS2015\APEX_Destructible_x64.dll
+..\to_scan\Beasts_in_the_Sun_EP1_Supporters_v8_1\BITS_EP1_Supporters_v8_1\Engine\Binaries\ThirdParty\PhysX3\Win64\VS2015\APEX_Legacy_x64.dll
+..\to_scan\Beasts_in_the_Sun_EP1_Supporters_v8_1\BITS_EP1_Supporters_v8_1\Engine\Binaries\ThirdParty\PhysX3\Win64\VS2015\NvCloth_x64.dll
+..\to_scan\Beasts_in_the_Sun_EP1_Supporters_v8_1\BITS_EP1_Supporters_v8_1\Engine\Binaries\ThirdParty\PhysX3\Win64\VS2015\PhysX3Common_x64.dll
+..\to_scan\Beasts_in_the_Sun_EP1_Supporters_v8_1\BITS_EP1_Supporters_v8_1\Engine\Binaries\ThirdParty\PhysX3\Win64\VS2015\PhysX3Cooking_x64.dll
+..\to_scan\Beasts_in_the_Sun_EP1_Supporters_v8_1\BITS_EP1_Supporters_v8_1\Engine\Binaries\ThirdParty\PhysX3\Win64\VS2015\PhysX3_x64.dll
+..\to_scan\Beasts_in_the_Sun_EP1_Supporters_v8_1\BITS_EP1_Supporters_v8_1\Engine\Binaries\ThirdParty\PhysX3\Win64\VS2015\PxFoundation_x64.dll
+..\to_scan\Beasts_in_the_Sun_EP1_Supporters_v8_1\BITS_EP1_Supporters_v8_1\Engine\Binaries\ThirdParty\PhysX3\Win64\VS2015\PxPvdSDK_x64.dll
+..\to_scan\Beasts_in_the_Sun_EP1_Supporters_v8_1\BITS_EP1_Supporters_v8_1\Engine\Binaries\ThirdParty\Vorbis\Win64\VS2015\libvorbisfile_64.dll
+..\to_scan\Beasts_in_the_Sun_EP1_Supporters_v8_1\BITS_EP1_Supporters_v8_1\Engine\Binaries\ThirdParty\Vorbis\Win64\VS2015\libvorbis_64.dll
+..\to_scan\Beasts_in_the_Sun_EP1_Supporters_v8_1\BITS_EP1_Supporters_v8_1\Engine\Binaries\ThirdParty\Windows\XAudio2_9\x64\xaudio2_9redist.dll
+..\to_scan\Beasts_in_the_Sun_EP1_Supporters_v8_1\BITS_EP1_Supporters_v8_1\Engine\Plugins\Runtime\Nvidia\Ansel\Binaries\ThirdParty\AnselSDK64.dll
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\d3dcompiler_47.dll
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\ffmpeg.dll
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\Game.exe
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\libEGL.dll
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\libGLESv2.dll
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\node.dll
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\notification_helper.exe
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\nw_elf.dll
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\package.json
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\data\Actors.json
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\data\Animations.json
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\data\Armors.json
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\data\AroCutIn.json
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\data\aroparams.json
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\data\BackGrounds.json
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\data\BgmList.json
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\data\BgsList.json
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\data\BgvList.json
+..\to_scan\Enishia_and_the_Binding_Brand_v1.06-Steam\Enishia and the Binding Brand\data\Classes.json
+..\to_scan\Heavy_Hearts_v0.55_Hotfix_1\Heavy Hearts 055-HF01\glew32.dll
+..\to_scan\I&#39;ll Lay Down My Life To Protect You!\I'll Lay Down My Life To Protect You!\d3dcompiler_47.dll
+..\to_scan\I&#39;ll Lay Down My Life To Protect You!\I'll Lay Down My Life To Protect You!\ffmpeg.dll
+..\to_scan\I&#39;ll Lay Down My Life To Protect You!\I'll Lay Down My Life To Protect You!\Game.exe
+..\to_scan\I&#39;ll Lay Down My Life To Protect You!\I'll Lay Down My Life To Protect You!\libEGL.dll
+..\to_scan\I&#39;ll Lay Down My Life To Protect You!\I'll Lay Down My Life To Protect You!\libGLESv2.dll
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\d3dcompiler_47.dll
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\ffmpeg.dll
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\libEGL.dll
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\libGLESv2.dll
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\node.dll
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\notification_helper.exe
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\nw.exe
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\nw_elf.dll
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\package.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\swiftshader\libEGL.dll
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\swiftshader\libGLESv2.dll
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\greenworks.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\package.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\steam_api.dll
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Actors.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Animations.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Armors.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Classes.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\CommonEvents.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\ContainerProperties.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Doodads.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Enemies.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Items.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map001.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map002.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map003.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map004.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map005.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map006.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map007.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map008.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map009.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map010.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map011.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map012.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map013.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map014.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map015.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map016.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map017.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map018.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map019.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map020.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map021.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map022.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map023.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map024.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map025.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map026.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map027.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map028.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map029.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map030.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map031.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map032.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map033.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map034.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map035.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map036.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map037.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map038.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map039.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map040.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map041.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map042.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map043.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map044.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map045.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map046.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map047.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map048.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map049.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map050.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map051.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map052.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map053.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map054.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map055.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map056.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map057.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map058.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map059.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map060.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map061.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map062.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map063.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map064.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map065.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map066.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map067.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map068.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map069.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map070.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map071.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map072.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map073.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map074.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map075.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map076.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map077.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map078.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Map079.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\MapInfos.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Skills.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\States.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\System.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Tilesets.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Troops.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\data\Weapons.json
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\main.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\modManager.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\rpg_core.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\rpg_managers.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\rpg_objects.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\rpg_scenes.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\rpg_sprites.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\rpg_windows.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\libs\fpsmeter.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\libs\iphone-inline-video.browser.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\libs\logger.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\libs\lz-string.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\libs\lz-string.old.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\libs\pino-file.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\libs\pino-pipeline-worker.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\libs\pino-worker.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\libs\pixi-apng.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\libs\pixi-rpgm.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\libs\pixi-tilemap.umd.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\libs\pixi.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\libs\rpgmaker.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\libs\sweetalert.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\libs\thread-stream-worker.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\libs\dragonbones\dragonBones.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\libs\dragonbones\dragonBonesPixi.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\loaders\localModsLoader.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\loaders\steamModsLoader.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\AB_SymbolEncounter.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\AKUNOU_MapScrollDisable.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\AKUNOU_OptionBase.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\AKUNOU_OptionGauge.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\AKUNOU_OptionMessageSpeed.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\aligncenter.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\AltMenuScreen.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\AltMenuScreen2.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\AltSaveScreen.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\AnimationMapName.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\AnotherNewGame.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\ApngPicture.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\ARP_TitleCommandExit.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\AutoBattle.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\BattleTransition.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\BB_CenterSlide.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\BodyLiquids.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\CommandIcon.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\CommonPopupCore.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\Community_Basic.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\ConsoleTrace.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\CustomizeErrorScreen.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\DevToolsManage.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\DKTools.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\DP_MapZoom.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\DreamX_BattlerSpriteIcons.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\DreamX_ITB.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\dsShowBattleCommand.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\EnemyBook.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\EventEffects.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\ExcludeStatus.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\FastForwardCustomize.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\FileDownloader.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\Foreground.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\FTKR_MessageWindowLines.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\FTKR_SceneBackImages.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\FTKR_SkillTreeSystem.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\GALV_CursorImage.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\GamepadConfig.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\GetInformation.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\GraphicalDesignMode.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\HIME_ChangeBattleback.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\HIME_SyncSaveData.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\Irina_AntiAudioDelay.js
+..\to_scan\Karryns_Prison_v1.3.0.61_FULL\Karryn's Prison\www\js\plugins\Irina_PerformanceUpgrade.js
