@@ -190,8 +190,7 @@ def analyze_directory(directory, analyzed_files, analyzed_folders, new_extension
                 if nb_analysis_req and time_to_wait + time_increment <= max_time:
                     time_to_wait += time_increment
                 time.sleep(time_to_wait)
-                report = get_analysis_report(analysis_id)
-                if report == -1:
+                if analysis_id == -1 or (report := get_analysis_report(analysis_id)) == -1:
                     return time_to_wait, 1
                 nb_analysis_req += 1
             if nb_analysis_req == 1 and time_to_wait - time_increment >= min_time:
@@ -248,6 +247,16 @@ def copy_files(file_paths, destination_folder):
 
 def main():
     time_to_wait = 5
+    analyzed_files = load_analyzed_files(ANALYZED_FILES_RECORD)
+    analyzed_folders = load_analyzed_folders(ANALYZED_FOLDER_RECORD)
+
+    for file in analyzed_files:
+        if not os.path.exists(file):
+            analyzed_files.remove(file)
+    for folder in analyzed_folders:
+        if not os.path.exists(folder):
+            analyzed_folders.remove(folder)
+
     while 1:
         err = 0
         time_increment = 5
@@ -257,8 +266,6 @@ def main():
         new_extensions = set()
         new_files = []
         completed_folders = []
-        analyzed_files = load_analyzed_files(ANALYZED_FILES_RECORD)
-        analyzed_folders = load_analyzed_folders(ANALYZED_FOLDER_RECORD)
         files_per_game = []
         for priority_lvl in sorted(PRIORITY_MAP.values()):
             time_to_wait, err = analyze_directory(FOLDER_PATH, analyzed_files, analyzed_folders, new_extensions, files_to_copy, new_files, completed_folders, files_per_game, priority_lvl, time_to_wait, time_increment, min_time, max_time, 1)
