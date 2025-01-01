@@ -41,7 +41,8 @@ PRIORITY_MAP = {
     'txt': 5,
     'json': 5,
     'xml': 5,
-    'css': 5
+    'css': 5,
+    '' : 5,
 }
 
 
@@ -49,7 +50,8 @@ SKIP_EXTENSIONS = {
     'png', 'jpg', 'jpeg', 'gif', 'bmp',     # Image files
     'wav', 'mp3', 'ogg',                    # Audio files
     'ttf', 'woff', 'otf',                   # Font files
-    'efkefc', 'efkmat', 'efkmodel', 'bdic'  # Proprietary/engine data files
+    'efkefc', 'efkmat', 'efkmodel', 'bdic',  # Proprietary/engine data files
+    'ini',
 }
 
 # File to store paths of analyzed files
@@ -94,7 +96,7 @@ def upload_file_to_virustotal(file_path):
             # Check for rate limit exceeded
             if response.status_code == 429:
                 print("[ERROR] API rate limit exceeded.")
-                return -1
+                return -2
             
             # Attempt to parse the JSON response
             response_json = response.json()
@@ -103,7 +105,7 @@ def upload_file_to_virustotal(file_path):
             if response.status_code != 200:
                 print(f"[ERROR] Could not upload file: {file_path}")
                 print(response_json)
-                return -1
+                return -2
             
             # Extract the analysis ID
             analysis_id = response_json["data"]["id"]
@@ -116,7 +118,7 @@ def upload_file_to_virustotal(file_path):
 
         except requests.exceptions.RequestException as e:
             print(f"[ERROR] Request failed: {e}")
-            return -1
+            return -2
 
 # Helper function to retrieve analysis results
 def get_analysis_report(analysis_id):
@@ -176,7 +178,8 @@ def analyze_directory(directory, analyzed_files, analyzed_folders, new_extension
                 new_files.append(file_path)
                 if USE_VIRUSTOTAL:
                     append_to_record(ANALYZED_FILES_RECORD, file_path)
-                return -1
+            elif analysis_id == -2:
+                return time_to_wait, 1
             # analysis_id = "NDA4NDE3ZmE0ZjIyYjM2Y2U4YjliMjJlM2M4ZDE4YzQ6MTczNTMwMDQ0NQ===="
             if not analysis_id:
                 continue
@@ -189,7 +192,7 @@ def analyze_directory(directory, analyzed_files, analyzed_folders, new_extension
                 time.sleep(time_to_wait)
                 report = get_analysis_report(analysis_id)
                 if report == -1:
-                    return -1
+                    return time_to_wait, 1
                 nb_analysis_req += 1
             if nb_analysis_req == 1 and time_to_wait - time_increment >= min_time:
                 time_to_wait -= time_increment
@@ -200,7 +203,7 @@ def analyze_directory(directory, analyzed_files, analyzed_folders, new_extension
             print(f"  - Undetected: {stats['undetected']}")
             if stats['malicious'] > 0 or stats['suspicious'] > 0:
                 print("[ALERT] Suspicious or malicious file detected. Stopping the scan.")
-                return -1
+                return time_to_wait, 1
             new_files.append(file_path)
             if USE_VIRUSTOTAL:
                 append_to_record(ANALYZED_FILES_RECORD, file_path)
@@ -211,14 +214,14 @@ def analyze_directory(directory, analyzed_files, analyzed_folders, new_extension
             if entry.path not in analyzed_folders:
                 if lvl0:
                     files_per_game.append([])
-                time_to_wait = analyze_directory(entry.path, analyzed_files, analyzed_folders, new_extensions, files_to_copy, new_files, completed_folders, files_per_game, priority_lvl, time_to_wait, time_increment, min_time, max_time)
-                if time_to_wait== -1:
-                    return -1
+                time_to_wait, err = analyze_directory(entry.path, analyzed_files, analyzed_folders, new_extensions, files_to_copy, new_files, completed_folders, files_per_game, priority_lvl, time_to_wait, time_increment, min_time, max_time)
+                if err == 1:
+                    return time_to_wait, 1
     if priority_lvl == max(PRIORITY_MAP.values()):
         completed_folders.append(directory)
         if USE_VIRUSTOTAL:
             append_to_record(ANALYZED_FOLDER_RECORD, directory)
-    return time_to_wait
+    return time_to_wait, 0
 
 
 def copy_files(file_paths, destination_folder):
@@ -245,36 +248,40 @@ def copy_files(file_paths, destination_folder):
 
 def main():
     time_to_wait = 5
-    time_increment = 5
-    min_time = 5
-    max_time = 60
-    files_to_copy = []
-    new_extensions = set()
-    new_files = []
-    completed_folders = []
-    analyzed_files = load_analyzed_files(ANALYZED_FILES_RECORD)
-    analyzed_folders = load_analyzed_folders(ANALYZED_FOLDER_RECORD)
-    files_per_game = []
-    for priority_lvl in sorted(PRIORITY_MAP.values()):
-        time_to_wait = analyze_directory(FOLDER_PATH, analyzed_files, analyzed_folders, new_extensions, files_to_copy, new_files, completed_folders, files_per_game, priority_lvl, time_to_wait, time_increment, min_time, max_time, 1)
-        if time_to_wait == -1:
-            return -1
-    print("new_extensions : ", new_extensions)
-    if not USE_VIRUSTOTAL:
-        if not ONE_GAME:
-            files_per_game = [files for files in files_per_game if files]
-            files_per_game.sort(key=lambda x: len(x))
-            for i, files in enumerate(files_per_game):
-                print(f"Game {i+1} has {len(files)} files")
-                for file in files:
-                    print(file)
-        to_copy = input("Do you want to copy the files? (Y/n) ")
-        if to_copy.lower() != "n":
-            copy_files(files_to_copy, DESTINATION_FOLDER)
-            to_update_record_input = input("Do you want to update the record file? (Y/n) ")
-            if to_update_record_input.lower() != "n":
-                append_to_record(ANALYZED_FILES_RECORD, "\n".join(new_files))
-                append_to_record(ANALYZED_FOLDER_RECORD, "\n".join(completed_folders))
+    while 1:
+        err = 0
+        time_increment = 5
+        min_time = 5
+        max_time = 60
+        files_to_copy = []
+        new_extensions = set()
+        new_files = []
+        completed_folders = []
+        analyzed_files = load_analyzed_files(ANALYZED_FILES_RECORD)
+        analyzed_folders = load_analyzed_folders(ANALYZED_FOLDER_RECORD)
+        files_per_game = []
+        for priority_lvl in sorted(PRIORITY_MAP.values()):
+            time_to_wait, err = analyze_directory(FOLDER_PATH, analyzed_files, analyzed_folders, new_extensions, files_to_copy, new_files, completed_folders, files_per_game, priority_lvl, time_to_wait, time_increment, min_time, max_time, 1)
+            if err == 1:
+                break
+        print("new_extensions : ", new_extensions)
+        if err != 1 and not USE_VIRUSTOTAL:
+            if not ONE_GAME:
+                files_per_game = [files for files in files_per_game if files]
+                files_per_game.sort(key=lambda x: len(x))
+                for i, files in enumerate(files_per_game):
+                    print(f"Game {i+1} has {len(files)} files")
+                    for file in files:
+                        print(file)
+            to_copy = input("Do you want to copy the files? (Y/n) ")
+            if to_copy.lower() != "n":
+                copy_files(files_to_copy, DESTINATION_FOLDER)
+                to_update_record_input = input("Do you want to update the record file? (Y/n) ")
+                if to_update_record_input.lower() != "n":
+                    append_to_record(ANALYZED_FILES_RECORD, "\n".join(new_files))
+                    append_to_record(ANALYZED_FOLDER_RECORD, "\n".join(completed_folders))
+        if input("Do you want to scan again? (Y/n) ").lower() == "n":
+            break
 
 if __name__ == "__main__":
     # Get your VirusTotal API key from API_KEY.txt
