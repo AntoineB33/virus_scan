@@ -147,15 +147,22 @@ def save_paths_dict(paths_dict, file_path):
     with open(file_path, 'w') as f:
         json.dump(paths_dict, f, indent=4)
 
+def remove_all_invalid_paths(paths_dict, path = ""):
+    """Recursively remove all paths that are don't exist."""
+    for path_name, sub_paths in list(paths_dict.items()):
+        new_path = ((path + '/') if path else '') + path_name
+        if not os.path.exists(new_path):
+            del paths_dict[path_name]
+        elif isinstance(sub_paths, dict):
+            remove_all_invalid_paths(sub_paths, new_path)
 
 def load_paths_dict(file_path, folder_path):
-
-    if not os.path.exists(file_path):
-        loaded_data = {"paths_dict": {}, "time_to_wait": 5, "nb_analyzed": {}}
-        return loaded_data, loaded_data["paths_dict"]
-    
-    with open(file_path, 'r') as f:
-        loaded_data = json.load(f)
+    loaded_data = {"paths_dict": {}, "time_to_wait": 5, "nb_analyzed": {}}
+    if os.path.exists(file_path):
+        with open(file_path, 'r') as f:
+            loaded_data = json.load(f)
+        remove_all_invalid_paths(loaded_data["paths_dict"])
+        remove_all_invalid_paths(loaded_data["nb_analyzed"])
     
     # Normalize folder_path
     folder_path = os.path.abspath(folder_path)
@@ -163,29 +170,23 @@ def load_paths_dict(file_path, folder_path):
 
     # Traverse to the target folder in the nested dict
     current_level = loaded_data["paths_dict"]
-    lastPart = 0
-    for i, part in enumerate(folder_parts):
-        if part in current_level:
-            if i == len(folder_parts) - 1:
-                lastPart = part
-            else:
-                current_level = current_level[part]
-        else:
-            raise ValueError(f"Folder path not found in the loaded data: {folder_path}")
+    current_level_nb = loaded_data["nb_analyzed"]
+    for part in folder_parts:
+        if part not in current_level:
+            current_level[part] = {}
+            current_level_nb[part] = {}
+        current_level = current_level[part]
+        current_level_nb = current_level_nb[part]
     
-    # Filter top-level keys to match actual filesystem
-    valid_keys = [key for key in current_level[lastPart] if os.path.exists(os.path.join(folder_path, key))]
-    current_level[lastPart] = {key: current_level[lastPart][key] for key in valid_keys}
-    
-    return loaded_data, current_level[lastPart]
+    return loaded_data, current_level, current_level_nb
 
 
-def analyze_directory(directory, paths_dict, game_paths_dict, loaded_dict, new_extensions, game, priority_lvl, time_increment, min_time, max_time, max_file_packets, lvl0=0):
+def analyze_directory(directory, paths_dict, game_paths_dict, nb_analyzed, loaded_dict, new_extensions, game, priority_lvl, time_increment, min_time, max_time, max_file_packets, lvl0=0):
     """Recursively analyze files in the directory before its subdirectories."""
     # Process all files in the current directory
     for entry in os.scandir(directory):
         if entry.is_file():
-            if game and loaded_dict["nb_analyzed"][game] >= max_file_packets * FILES_MAX_PER_GAME:
+            if game and nb_analyzed[game] >= max_file_packets * FILES_MAX_PER_GAME:
                 return 0, 1
             if should_skip_file(entry.name, new_extensions, priority_lvl):
                 continue
@@ -195,7 +196,7 @@ def analyze_directory(directory, paths_dict, game_paths_dict, loaded_dict, new_e
             analysis_id = upload_file_to_virustotal(entry.path)
             if analysis_id == -2 or analysis_id == -1 or not analysis_id:
                 if game:
-                    loaded_dict["nb_analyzed"][game] += 1
+                    nb_analyzed[game] += 1
                 paths_dict[entry.name] = None
                 save_paths_dict(loaded_dict, ANALYZED_FILES_RECORD)
                 add_to_record(TO_MANUALLY_SCAN_RECORD, entry.path)
@@ -205,6 +206,7 @@ def analyze_directory(directory, paths_dict, game_paths_dict, loaded_dict, new_e
             # analysis_id = "NDA4NDE3ZmE0ZjIyYjM2Y2U4YjliMjJlM2M4ZDE4YzQ6MTczNTMwMDQ0NQ===="
             report = None
             nb_analysis_req = 0
+            print(game, nb_analyzed[game], max_file_packets, FILES_MAX_PER_GAME)
             while not report or (stats:=report["data"]["attributes"]["stats"])['undetected'] == 0 and stats['suspicious'] == 0 and stats['malicious'] == 0 and stats['harmless'] == 0:
                 print(f"[*] Analysis ID received: {analysis_id}")
                 if nb_analysis_req and loaded_dict["time_to_wait"] + time_increment <= max_time:
@@ -212,7 +214,7 @@ def analyze_directory(directory, paths_dict, game_paths_dict, loaded_dict, new_e
                 time.sleep(loaded_dict["time_to_wait"])
                 if analysis_id == -1 or (report := get_analysis_report(analysis_id)) == -1:
                     if game:
-                        loaded_dict["nb_analyzed"][game] += 1
+                        nb_analyzed[game] += 1
                     paths_dict[entry.name] = None
                     save_paths_dict(loaded_dict, ANALYZED_FILES_RECORD)
                     add_to_record(TO_MANUALLY_SCAN_RECORD, entry.path)
@@ -229,9 +231,11 @@ def analyze_directory(directory, paths_dict, game_paths_dict, loaded_dict, new_e
                 print("[ALERT] Suspicious or malicious file detected. Stopping the scan.")
                 game_paths_dict[game] = "done"
                 save_paths_dict(loaded_dict, ANALYZED_FILES_RECORD)
-                add_to_record(VIRUS_DETECT_RECORD, game)
-                return 1, 0
+                add_to_record(VIRUS_DETECT_RECORD, directory + '/' + game)
+                return 2, 0
             paths_dict[entry.name] = None
+            if game:
+                nb_analyzed[game] += 1
             save_paths_dict(loaded_dict, ANALYZED_FILES_RECORD)
             
     
@@ -245,12 +249,14 @@ def analyze_directory(directory, paths_dict, game_paths_dict, loaded_dict, new_e
             else:
                 paths_dict[entry.name] = {}
                 if lvl0:
-                    loaded_dict["nb_analyzed"][game] = 0
+                    nb_analyzed[game] = 0
             if lvl0:
                 game = entry.name
-            err, increase_max_nb_temp = analyze_directory(entry.path, paths_dict[entry.name], game_paths_dict, loaded_dict, new_extensions, game, priority_lvl, time_increment, min_time, max_time, max_file_packets)
+            err, increase_max_nb_temp = analyze_directory(entry.path, paths_dict[entry.name], game_paths_dict, nb_analyzed, loaded_dict, new_extensions, game, priority_lvl, time_increment, min_time, max_time, max_file_packets)
             if err == 1:
                 return 1, 0
+            if err == 2 and not lvl0:
+                return 2, 0
             if increase_max_nb_temp:
                 increase_max_nb = 1
     if priority_lvl == max(PRIORITY_MAP.values()) and not increase_max_nb:
@@ -261,7 +267,18 @@ def analyze_directory(directory, paths_dict, game_paths_dict, loaded_dict, new_e
 def main():
     while 1:
         try:
-            loaded_dict, game_paths_dict = load_paths_dict(ANALYZED_FILES_RECORD, GAMES_FOLDER_DIRECT_PATH)
+            if not os.path.exists(GAMES_FOLDER_DIRECT_PATH):
+                raise Exception(f"Folder {GAMES_FOLDER_DIRECT_PATH} does not exist.")
+            if not os.path.isdir(GAMES_FOLDER_DIRECT_PATH):
+                raise Exception(f"{GAMES_FOLDER_DIRECT_PATH} is not a folder.")
+            # remove all invalid paths from VIRUS_DETECT_RECORD
+            with open(VIRUS_DETECT_RECORD, 'r') as f:
+                invalid_paths = f.readlines()
+            with open(VIRUS_DETECT_RECORD, 'w') as f:
+                for path in invalid_paths:
+                    if os.path.exists(path.strip()):
+                        f.write(path)
+            loaded_dict, game_paths_dict, nb_analyzed = load_paths_dict(ANALYZED_FILES_RECORD, GAMES_FOLDER_DIRECT_PATH)
             while 1:
                 err = 0
                 time_increment = 5
@@ -271,7 +288,7 @@ def main():
                 priority_lvl = 1
                 max_file_packets = 1
                 while priority_lvl <= max(PRIORITY_MAP.values()):
-                    err, increase_max_nb = analyze_directory(GAMES_FOLDER_DIRECT_PATH, game_paths_dict, game_paths_dict, loaded_dict, new_extensions, "", priority_lvl, time_increment, min_time, max_time, max_file_packets, 1)
+                    err, increase_max_nb = analyze_directory(GAMES_FOLDER_DIRECT_PATH, game_paths_dict, game_paths_dict, nb_analyzed, loaded_dict, new_extensions, "", priority_lvl, time_increment, min_time, max_time, max_file_packets, 1)
                     if err == 1:
                         break
                     if increase_max_nb:

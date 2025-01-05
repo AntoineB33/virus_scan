@@ -441,20 +441,6 @@
                                                         "EmbedRuntime": {
                                                             "mono-2.0-bdwgc.dll": null,
                                                             "MonoPosixHelper.dll": null
-                                                        },
-                                                        "etc": {
-                                                            "mono": {
-                                                                "2.0": {
-                                                                    "Browsers": {}
-                                                                },
-                                                                "4.0": {
-                                                                    "Browsers": {}
-                                                                },
-                                                                "4.5": {
-                                                                    "Browsers": {}
-                                                                },
-                                                                "mconfig": {}
-                                                            }
                                                         }
                                                     },
                                                     "pure-onyx_Data": {
@@ -580,12 +566,9 @@
                                                         "StreamingAssets": {
                                                             "LovenseToySupportConfig.json": null,
                                                             "aa": {
-                                                                "settings.json": null,
-                                                                "AddressablesLink": {},
-                                                                "StandaloneWindows64": {}
+                                                                "settings.json": null
                                                             }
-                                                        },
-                                                        "Resources": {}
+                                                        }
                                                     }
                                                 }
                                             },
@@ -924,28 +907,7 @@
                                                                 "YEP_SaveEventLocations.js": null,
                                                                 "YKP_FollowerStepAnime.js": null
                                                             }
-                                                        },
-                                                        "audio": {
-                                                            "bgm": {},
-                                                            "bgs": {},
-                                                            "se": {}
-                                                        },
-                                                        "fonts": {},
-                                                        "icon": {},
-                                                        "img": {
-                                                            "animations": {},
-                                                            "characters": {},
-                                                            "parallaxes": {},
-                                                            "pictures": {},
-                                                            "system": {},
-                                                            "tilesets": {},
-                                                            "titles1": {}
-                                                        },
-                                                        "save": {}
-                                                    },
-                                                    "locales": {},
-                                                    "\u304a\u307e\u3051": {
-                                                        "save": {}
+                                                        }
                                                     }
                                                 }
                                             },
@@ -1057,10 +1019,7 @@
                                                             "Map093.json": null,
                                                             "Map094.json": null,
                                                             "Map095.json": null,
-                                                            "Map096.json": null,
-                                                            "Map097.json": null,
-                                                            "Map099.json": null,
-                                                            "Map100.json": null
+                                                            "Map096.json": null
                                                         },
                                                         "js": {
                                                             "main.js": null,
@@ -1093,35 +1052,8 @@
                                                                 "EnemyBook.js": null,
                                                                 "EnemySlideIn.js": null
                                                             }
-                                                        },
-                                                        "audio": {
-                                                            "bgm": {},
-                                                            "bgs": {},
-                                                            "me": {},
-                                                            "se": {}
-                                                        },
-                                                        "fonts": {},
-                                                        "icon": {},
-                                                        "img": {
-                                                            "animations": {},
-                                                            "battlebacks1": {},
-                                                            "battlebacks2": {},
-                                                            "battlecommands": {},
-                                                            "battlehud": {},
-                                                            "characters": {},
-                                                            "faces": {},
-                                                            "parallaxes": {},
-                                                            "pictures": {},
-                                                            "sv_actors": {},
-                                                            "sv_enemies": {},
-                                                            "system": {},
-                                                            "tilesets": {},
-                                                            "titles1": {},
-                                                            "titles2": {}
-                                                        },
-                                                        "save": {}
-                                                    },
-                                                    "locales": {}
+                                                        }
+                                                    }
                                                 }
                                             },
                                             "RJ324547-Monster_Fight": {
@@ -1365,29 +1297,7 @@
                                                             "Map213.json": null,
                                                             "Map214.json": null,
                                                             "Map215.json": null,
-                                                            "Map216.json": null,
-                                                            "Map217.json": null,
-                                                            "Map218.json": null,
-                                                            "Map219.json": null,
-                                                            "Map220.json": null,
-                                                            "Map221.json": null,
-                                                            "Map222.json": null,
-                                                            "Map223.json": null,
-                                                            "Map224.json": null,
-                                                            "Map225.json": null,
-                                                            "Map226.json": null,
-                                                            "Map227.json": null,
-                                                            "Map228.json": null,
-                                                            "Map229.json": null,
-                                                            "Map230.json": null,
-                                                            "Map231.json": null,
-                                                            "Map232.json": null,
-                                                            "Map233.json": null,
-                                                            "Map234.json": null,
-                                                            "Map235.json": null,
-                                                            "Map236.json": null,
-                                                            "Map237.json": null,
-                                                            "Map238.json": null
+                                                            "Map216.json": null
                                                         },
                                                         "fonts": {},
                                                         "icon": {},
@@ -1409,7 +1319,16 @@
                                                     }
                                                 }
                                             },
-                                            "Uni-HizorGames-v0.55.118b-PC": "done"
+                                            "Special_Operations_Unit_SIGNAL_FORCES_Steam": {
+                                                "Special Operations Unit - SIGNAL FORCES": {}
+                                            },
+                                            "third_crisis": {
+                                                "setup_third_crisis_0.58.1_(64bit)_(71531).exe": null
+                                            },
+                                            "Uni-HizorGames-v0.55.118b-PC": {
+                                                "Uni-0.55.118b-pc": {}
+                                            },
+                                            "_Odontotyranus__Young_Wife_eng": "done"
                                         }
                                     }
                                 }
@@ -1435,9 +1354,13 @@
                                             "pure-onyx-november-2024-win": 21,
                                             "RJ01099098-Magical_Girl_Breasty": 88,
                                             "RJ01175533": 24,
-                                            "RJ184230_-_Kamikaze_Kommittee_Ouka_RPG_ver105": 40,
-                                            "RJ324547-Monster_Fight": 22,
-                                            "Uni-HizorGames-v0.55.118b-PC": 9
+                                            "RJ184230_-_Kamikaze_Kommittee_Ouka_RPG_ver105": 37,
+                                            "RJ324547-Monster_Fight": 0,
+                                            "ShimobashiraWorkshopAnthesisVer111": 18,
+                                            "Special_Operations_Unit_SIGNAL_FORCES_Steam": 0,
+                                            "third_crisis": 0,
+                                            "Uni-HizorGames-v0.55.118b-PC": 0,
+                                            "_Odontotyranus__Young_Wife_eng": 19
                                         }
                                     }
                                 }
