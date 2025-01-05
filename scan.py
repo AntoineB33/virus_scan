@@ -55,10 +55,9 @@ SKIP_EXTENSIONS = {
 
 # File to store paths of analyzed files
 ANALYZED_FILES_RECORD = "analyzed_files2.txt"
-ANALYZED_FOLDER_RECORD = "analyzed_folders.txt"
 TO_MANUALLY_SCAN_RECORD = "to_manually_scan.txt"
 VIRUS_DETECT_RECORD = "virus_detect.txt"
-TIME_TO_WAIT_RECORD = "time_to_wait.txt"
+CLEAN_RECORD = "clean_detect.txt"
 
 # VirusTotal endpoints
 UPLOAD_URL = "https://www.virustotal.com/api/v3/files"
@@ -259,6 +258,11 @@ def analyze_directory(directory, paths_dict, game_paths_dict, nb_analyzed, loade
                 return 2, 0
             if increase_max_nb_temp:
                 increase_max_nb = 1
+            elif lvl0 and priority_lvl == max(PRIORITY_MAP.values()):
+                print("[ALERT] Suspicious or malicious file detected. Stopping the scan.")
+                game_paths_dict[game] = "done"
+                save_paths_dict(loaded_dict, ANALYZED_FILES_RECORD)
+                add_to_record(CLEAN_RECORD, directory + '/' + game)
     if priority_lvl == max(PRIORITY_MAP.values()) and not increase_max_nb:
         game_paths_dict.add(game)
         save_paths_dict(loaded_dict, ANALYZED_FILES_RECORD)
