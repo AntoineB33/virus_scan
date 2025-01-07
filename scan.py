@@ -301,12 +301,12 @@ def main():
                         priority_lvl += 1
                 print("new_extensions : ", new_extensions)
                 if input("Do you want to scan again? (Y/n) ").lower() == "n":
-                    break
+                    return
         except Exception as e:
             print(f"Error: {e}")
-            raise e
+            # raise e
             if input("Do you want to scan again? (Y/n) ").lower() == "n":
-                break
+                return
 
 if __name__ == "__main__":
     # Get your VirusTotal API key from API_KEY.txt
