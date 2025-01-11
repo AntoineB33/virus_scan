@@ -156,7 +156,7 @@ def remove_all_invalid_paths(paths_dict, path = ""):
             remove_all_invalid_paths(sub_paths, new_path)
 
 def load_paths_dict(file_path, folder_path):
-    loaded_data = {"paths_dict": {}, "time_to_wait": 5, "nb_analyzed": {}}
+    loaded_data = {"paths_dict": {}, "time_to_wait": 5, "nb_analyzed": {}, "gamesHistory": []}
     if os.path.exists(file_path):
         with open(file_path, 'r') as f:
             loaded_data = json.load(f)
@@ -177,10 +177,14 @@ def load_paths_dict(file_path, folder_path):
         current_level = current_level[part]
         current_level_nb = current_level_nb[part]
     
-    return loaded_data, current_level, current_level_nb
+    return loaded_data, current_level, current_level_nb, loaded_data["gamesHistory"]
 
+def fold_to_done(game_paths_dict, game, loaded_dict, directory):
+    game_paths_dict[game] = "done"
+    save_paths_dict(loaded_dict, ANALYZED_FILES_RECORD)
+    add_to_record(CLEAN_RECORD, directory + '/' + game)
 
-def analyze_directory(directory, paths_dict, game_paths_dict, nb_analyzed, loaded_dict, new_extensions, game, priority_lvl, time_increment, min_time, max_time, max_file_packets, lvl0=0):
+def analyze_directory(directory, paths_dict, game_paths_dict, nb_analyzed, gamesHistory, loaded_dict, new_extensions, game, priority_lvl, time_increment, min_time, max_time, max_file_packets, lvl0=0):
     """Recursively analyze files in the directory before its subdirectories."""
     # Process all files in the current directory
     for entry in os.scandir(directory):
@@ -249,9 +253,12 @@ def analyze_directory(directory, paths_dict, game_paths_dict, nb_analyzed, loade
                 paths_dict[entry.name] = {}
                 if lvl0:
                     nb_analyzed[game] = 0
+            if lvl0 and entry.name in gamesHistory:
+                print("game already analyzed : ", entry.name)
+                fold_to_done(game_paths_dict, game, loaded_dict, directory)
             if lvl0:
                 game = entry.name
-            err, increase_max_nb_temp = analyze_directory(entry.path, paths_dict[entry.name], game_paths_dict, nb_analyzed, loaded_dict, new_extensions, game, priority_lvl, time_increment, min_time, max_time, max_file_packets)
+            err, increase_max_nb_temp = analyze_directory(entry.path, paths_dict[entry.name], game_paths_dict, nb_analyzed, gamesHistory, loaded_dict, new_extensions, game, priority_lvl, time_increment, min_time, max_time, max_file_packets)
             if err == 1:
                 return 1, 0
             if err == 2 and not lvl0:
@@ -260,9 +267,7 @@ def analyze_directory(directory, paths_dict, game_paths_dict, nb_analyzed, loade
                 increase_max_nb = 1
             elif lvl0 and priority_lvl == max(PRIORITY_MAP.values()):
                 print("[ALERT] Suspicious or malicious file detected. Stopping the scan.")
-                game_paths_dict[game] = "done"
-                save_paths_dict(loaded_dict, ANALYZED_FILES_RECORD)
-                add_to_record(CLEAN_RECORD, directory + '/' + game)
+                fold_to_done(game_paths_dict, game, loaded_dict, directory)
     if priority_lvl == max(PRIORITY_MAP.values()) and not increase_max_nb:
         game_paths_dict.add(game)
         save_paths_dict(loaded_dict, ANALYZED_FILES_RECORD)
@@ -282,7 +287,7 @@ def main():
                 for path in invalid_paths:
                     if os.path.exists(path.strip()):
                         f.write(path)
-            loaded_dict, game_paths_dict, nb_analyzed = load_paths_dict(ANALYZED_FILES_RECORD, GAMES_FOLDER_DIRECT_PATH)
+            loaded_dict, game_paths_dict, nb_analyzed, gamesHistory = load_paths_dict(ANALYZED_FILES_RECORD, GAMES_FOLDER_DIRECT_PATH)
             while 1:
                 err = 0
                 time_increment = 5
@@ -292,7 +297,7 @@ def main():
                 priority_lvl = 1
                 max_file_packets = 1
                 while priority_lvl <= max(PRIORITY_MAP.values()):
-                    err, increase_max_nb = analyze_directory(GAMES_FOLDER_DIRECT_PATH, game_paths_dict, game_paths_dict, nb_analyzed, loaded_dict, new_extensions, "", priority_lvl, time_increment, min_time, max_time, max_file_packets, 1)
+                    err, increase_max_nb = analyze_directory(GAMES_FOLDER_DIRECT_PATH, game_paths_dict, game_paths_dict, nb_analyzed, gamesHistory, loaded_dict, new_extensions, "", priority_lvl, time_increment, min_time, max_time, max_file_packets, 1)
                     if err == 1:
                         break
                     if increase_max_nb:
