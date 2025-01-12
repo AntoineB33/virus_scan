@@ -1641,7 +1641,10 @@
                                                         },
                                                         "audio": {
                                                             "bgm": {
-                                                                "bgm1.rpgmvo": null
+                                                                "bgm1.rpgmvo": null,
+                                                                "bgm2.rpgmvo": null,
+                                                                "bgm3.rpgmvo": null,
+                                                                "bgm4.rpgmvo": null
                                                             },
                                                             "bgs": {},
                                                             "se": {}
@@ -2503,7 +2506,7 @@
             }
         }
     },
-    "time_to_wait": 55,
+    "time_to_wait": 50,
     "nb_analyzed": {
         "C:": {
             "Users": {
@@ -2517,7 +2520,7 @@
                                             "Karryns_Prison_v1.3.0.61_FULL": 244,
                                             "pure-onyx-november-2024-win": 21,
                                             "RJ01099098-Magical_Girl_Breasty": 1280,
-                                            "RJ01175533": 89,
+                                            "RJ01175533": 92,
                                             "RJ184230_-_Kamikaze_Kommittee_Ouka_RPG_ver105": 195,
                                             "RJ324547-Monster_Fight": 153
                                         }
