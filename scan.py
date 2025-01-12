@@ -6,8 +6,8 @@ import json
 
 # Folder path you want to scan
 FILES_MAX_PER_GAME = 20
-API_KEY_PATH = "API_KEY.txt"
-GAMES_FOLDER_DIRECT_PATH = "..\\to_scan"
+API_KEY_PATH = "C:/Users/abarb/Documents/health/news_underground/games/downloaded/virus_scan/API_KEY.txt"
+GAMES_FOLDER_DIRECT_PATH = "C:/Users/abarb/Documents/health/news_underground/games/downloaded/to_scan"
 PRIORITY_MAP = {
     # Very high risk: directly executable or scripting
     'exe': 1,
@@ -51,13 +51,14 @@ SKIP_EXTENSIONS = {
     'ttf', 'woff', 'otf',                   # Font files
     'efkefc', 'efkmat', 'efkmodel', 'bdic',  # Proprietary/engine data files
     'ini',
+    'gitignore'
 }
 
 # File to store paths of analyzed files
-ANALYZED_FILES_RECORD = "analyzed_files2.txt"
-TO_MANUALLY_SCAN_RECORD = "to_manually_scan.txt"
-VIRUS_DETECT_RECORD = "virus_detect.txt"
-CLEAN_RECORD = "clean_detect.txt"
+ANALYZED_FILES_RECORD = "C:/Users/abarb/Documents/health/news_underground/games/downloaded/virus_scan/analyzed_files2.txt"
+TO_MANUALLY_SCAN_RECORD = "C:/Users/abarb/Documents/health/news_underground/games/downloaded/virus_scan/to_manually_scan.txt"
+VIRUS_DETECT_RECORD = "C:/Users/abarb/Documents/health/news_underground/games/downloaded/virus_scan/virus_detect.txt"
+CLEAN_RECORD = "C:/Users/abarb/Documents/health/news_underground/games/downloaded/virus_scan/clean_detect.txt"
 
 # VirusTotal endpoints
 UPLOAD_URL = "https://www.virustotal.com/api/v3/files"
@@ -196,6 +197,7 @@ def analyze_directory(directory, paths_dict, game_paths_dict, nb_analyzed, games
             if entry.name in paths_dict:
                 continue
             print(f"\n[*] Uploading file: {entry.path}")
+            print("new_extensions : ", new_extensions)
             analysis_id = upload_file_to_virustotal(entry.path)
             if analysis_id == -2 or analysis_id == -1 or not analysis_id:
                 if game:
@@ -258,6 +260,8 @@ def analyze_directory(directory, paths_dict, game_paths_dict, nb_analyzed, games
                 fold_to_done(game_paths_dict, game, loaded_dict, directory)
             if lvl0:
                 game = entry.name
+            if entry.path == 'C:/Users/abarb/Documents/health/news_underground/games/downloaded/to_scan\\pure-onyx-november-2024-win\\PURE ONYX_0.118.0\\MonoBleedingEdge\\etc\\mono':
+                print("game : ", game)
             err, increase_max_nb_temp = analyze_directory(entry.path, paths_dict[entry.name], game_paths_dict, nb_analyzed, gamesHistory, loaded_dict, new_extensions, game, priority_lvl, time_increment, min_time, max_time, max_file_packets)
             if err == 1:
                 return 1, 0
@@ -266,11 +270,7 @@ def analyze_directory(directory, paths_dict, game_paths_dict, nb_analyzed, games
             if increase_max_nb_temp:
                 increase_max_nb = 1
             elif lvl0 and priority_lvl == max(PRIORITY_MAP.values()):
-                print("[ALERT] Suspicious or malicious file detected. Stopping the scan.")
                 fold_to_done(game_paths_dict, game, loaded_dict, directory)
-    if priority_lvl == max(PRIORITY_MAP.values()) and not increase_max_nb:
-        game_paths_dict.add(game)
-        save_paths_dict(loaded_dict, ANALYZED_FILES_RECORD)
     return 0, increase_max_nb
 
 def main():
