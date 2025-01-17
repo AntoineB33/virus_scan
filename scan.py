@@ -177,10 +177,10 @@ def add_to_history(loaded_dict, user_indications, path, cat, game = ''):
 def analyze_directory(directory, paths_dict, game_paths_dict, nb_analyzed, loaded_dict, user_indications, new_extensions, game, priority_lvl, time_increment, min_time, max_time, max_file_packets, lvl0=0):
     """Recursively analyze files in the directory before its subdirectories."""
     # Process all files in the current directory
+    for element in list(paths_dict.keys()):
+        if element not in os.listdir(directory):
+            del paths_dict[element]
     if game:
-        for element in list(paths_dict.keys()):
-            if element not in os.listdir(directory):
-                del paths_dict[element]
         for entry in os.scandir(directory):
             if entry.is_file():
                 if game and nb_analyzed[game] >= max_file_packets * FILES_MAX_PER_GAME:
@@ -241,7 +241,6 @@ def analyze_directory(directory, paths_dict, game_paths_dict, nb_analyzed, loade
         if entry.is_dir():
             if lvl0:
                 game = entry.name
-            found = 0
             if entry.name in paths_dict:
                 if lvl0:
                     if paths_dict[entry.name] == "clean_games":
@@ -250,7 +249,7 @@ def analyze_directory(directory, paths_dict, game_paths_dict, nb_analyzed, loade
                     if paths_dict[entry.name] == "suspicious_games":
                         add_to_history(loaded_dict, user_indications, entry.path, "suspicious_games", game)
                         continue
-            if not found:
+            else:
                 paths_dict[entry.name] = {}
                 if lvl0:
                     nb_analyzed[game] = 0
@@ -302,7 +301,7 @@ def main():
                 print("new_extensions : ", new_extensions)
                 if input("Do you want to scan again? (Y/n) ").lower() == "n":
                     return
-        except ZeroDivisionError  as e:
+        except Exception as e:
             print(f"Error: {e}")
             # raise e
             if input("Do you want to scan again? (Y/n) ").lower() == "n":
