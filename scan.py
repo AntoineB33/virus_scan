@@ -6,8 +6,9 @@ import json
 
 # Folder path you want to scan
 GAMES_FOLDER_DIRECT_PATH = "C:/Users/abarb/Documents/health/news_underground/games/downloaded/to_scan"
-FILES_MAX_PER_GAME = 20
-MAX_HISTORY = 20
+MAX_FILES_PER_GAME = 1000
+FILES_MAX_PER_GAME_PER_PRIO = 20
+MAX_HISTORY = 1000
 PRIORITY_MAP = {
     # Very high risk: directly executable or scripting
     'exe': 1,
@@ -43,7 +44,6 @@ PRIORITY_MAP = {
     'css': 5,
     '' : 5,
 }
-
 
 SKIP_EXTENSIONS = {
     'png', 'jpg', 'jpeg', 'gif', 'bmp',     # Image files
@@ -174,45 +174,63 @@ def add_to_history(loaded_dict, user_indications, path, cat, game = ''):
         save_paths_dict(loaded_dict, RECORDS_PATH)
     save_paths_dict(user_indications, WHAT_TO_DO_PATH)
 
-def analyze_directory(directory, paths_dict, game_paths_dict, nb_analyzed, loaded_dict, user_indications, new_extensions, game, priority_lvl, time_increment, min_time, max_time, max_file_packets, lvl0=0):
+# Function to filter files and directories
+def filter_entries(directory):
+    current_entries = {"files": set(), "dirs": set()}
+    with os.scandir(directory) as entries:
+        for entry in entries:
+            if entry.is_file():
+                current_entries["files"].add(entry.name)
+            elif entry.is_dir():
+                current_entries["dirs"].add(entry.name)
+    return current_entries
+
+def analyze_directory(directory, paths_dict, game_paths_dict, nb_analyzed, loaded_dict, user_indications, new_extensions, game, priority_lvl, time_increment, min_time, max_time, max_file_packets, to_scan_manually):
     """Recursively analyze files in the directory before its subdirectories."""
     # Process all files in the current directory
-    for element in list(paths_dict.keys()):
-        if element not in os.listdir(directory):
-            del paths_dict[element]
+    current_entries = filter_entries(directory)
+    for entryType in ["files", "dirs"]:
+        for element in list(paths_dict[entryType].keys()):
+            if element not in current_entries[entryType]:
+                del paths_dict[entryType][element]
+                if not game:
+                    del nb_analyzed[element]
+
     if game:
         for entry in os.scandir(directory):
             if entry.is_file():
-                if game and nb_analyzed[game] >= max_file_packets * FILES_MAX_PER_GAME:
-                    return 0, 1
+                if game and nb_analyzed[game] >= max_file_packets * FILES_MAX_PER_GAME_PER_PRIO:
+                    return 0, 1, to_scan_manually
                 if should_skip_file(entry.name, new_extensions, priority_lvl):
                     continue
                 path = directory + '/' + entry.name
-                if entry.name in paths_dict:
-                    if paths_dict[entry.name] == "to_manually_scan":
+                if entry.name in paths_dict["files"]:
+                    if paths_dict["files"][entry.name] == "to_manually_scan":
                         add_to_history(loaded_dict, user_indications, path, "waiting_manual_scan")
                     continue
                 if entry.stat().st_size > max_size:
                     if game:
                         nb_analyzed[game] += 1
+                        if nb_analyzed[game] >= MAX_FILES_PER_GAME:
+                            return 0, 1, 1
                     add_to_history(loaded_dict, user_indications, path, "waiting_manual_scan")
                     continue
                 print(f"\n[*] Uploading file: {entry.path}")
                 print("new_extensions : ", new_extensions)
                 analysis_id = upload_file_to_virustotal(entry.path)
                 if analysis_id == -1:
-                    return 1, 0
+                    return 1, 0, 0
                 # analysis_id = "NDA4NDE3ZmE0ZjIyYjM2Y2U4YjliMjJlM2M4ZDE4YzQ6MTczNTMwMDQ0NQ===="
                 report = None
                 nb_analysis_req = 0
-                print(game, nb_analyzed[game], max_file_packets, FILES_MAX_PER_GAME)
+                print(game, nb_analyzed[game], max_file_packets, FILES_MAX_PER_GAME_PER_PRIO)
                 while not report or (stats:=report["data"]["attributes"]["stats"])['undetected'] == 0 and stats['suspicious'] == 0 and stats['malicious'] == 0 and stats['harmless'] == 0:
                     print("[*] Waiting for analysis results...")
                     if nb_analysis_req and loaded_dict["time_to_wait"] + time_increment <= max_time:
                         loaded_dict["time_to_wait"] += time_increment
                     time.sleep(loaded_dict["time_to_wait"])
                     if (report := get_analysis_report(analysis_id)) == -1:
-                        return 1, 0
+                        return 1, 0, 0
                     nb_analysis_req += 1
                 if nb_analysis_req == 1 and loaded_dict["time_to_wait"] - time_increment >= min_time:
                     loaded_dict["time_to_wait"] -= time_increment
@@ -223,55 +241,60 @@ def analyze_directory(directory, paths_dict, game_paths_dict, nb_analyzed, loade
                 print(f"  - Undetected: {stats['undetected']}")
                 if stats['malicious'] > 0 or stats['suspicious'] > 0:
                     print("[ALERT] Suspicious or malicious file detected. Stopping the scan.")
-                    return 2, 0
-                paths_dict[entry.name] = None
+                    return 2, 0, 0
+                paths_dict["files"][entry.name] = None
                 if game:
                     nb_analyzed[game] += 1
                 save_paths_dict(loaded_dict, RECORDS_PATH)
-    else:
-        for entry in list(paths_dict.keys()):
-            if entry not in os.listdir(directory):
-                del paths_dict[entry]
-                del nb_analyzed[entry]
             
     
     # Recursively process each subdirectory
     increase_max_nb = 0
+    lvl0 = not game
     for entry in os.scandir(directory):
         if entry.is_dir():
             if lvl0:
                 game = entry.name
-            if entry.name in paths_dict:
+            if entry.name in paths_dict["dirs"]:
                 if lvl0:
-                    if paths_dict[entry.name] == "clean_games":
-                        add_to_history(loaded_dict, user_indications, entry.path, "clean_games", game)
-                        continue
-                    if paths_dict[entry.name] == "suspicious_games":
-                        add_to_history(loaded_dict, user_indications, entry.path, "suspicious_games", game)
+                    found = 0
+                    for cat in ["clean_games", "waiting_manual_scan", "suspicious_games"]:
+                        if paths_dict["dirs"][entry.name] == cat:
+                            found = 1
+                            break
+                    if found:
                         continue
             else:
-                paths_dict[entry.name] = {}
+                if lvl0:
+                    found = 0
+                    for cat in ["clean_games", "waiting_manual_scan", "suspicious_games"]:
+                        if entry.name in loaded_dict[cat]:
+                            add_to_history(loaded_dict, user_indications, entry.path, "clean_games", game)
+                            found = 1
+                            break
+                    if found:
+                        continue
+                    to_scan_manually = 0
+                paths_dict["dirs"][entry.name] = {"priority_compltd": 0, "files": {}, "dirs": {}}
                 if lvl0:
                     nb_analyzed[game] = 0
-            if lvl0:
-                if entry.name in loaded_dict["clean_games"]:
-                    add_to_history(loaded_dict, user_indications, entry.path, "clean_games", game)
-                    continue
-                if entry.name in loaded_dict["suspicious_games"]:
-                    add_to_history(loaded_dict, user_indications, entry.path, "suspicious_games", game)
-                    continue
-            err, increase_max_nb_temp = analyze_directory(entry.path, paths_dict[entry.name], game_paths_dict, nb_analyzed, loaded_dict, user_indications, new_extensions, game, priority_lvl, time_increment, min_time, max_time, max_file_packets)
+            if paths_dict["dirs"][entry.name]["priority_compltd"] >= priority_lvl:
+                continue
+            err, increase_max_nb_temp, to_scan_manually = analyze_directory(entry.path, paths_dict["dirs"][entry.name], game_paths_dict, nb_analyzed, loaded_dict, user_indications, new_extensions, game, priority_lvl, time_increment, min_time, max_time, max_file_packets, to_scan_manually)
             if err == 1:
-                return 1, 0
+                return 1, 0, 0
             if err == 2:
                 if lvl0:
                     add_to_history(loaded_dict, user_indications, entry.path, "suspicious_games", game)
                 else:
-                    return 2, 0
-            if increase_max_nb_temp:
+                    return 2, 0, 0
+            elif increase_max_nb_temp:
                 increase_max_nb = 1
-            elif err != 2 and lvl0 and priority_lvl == max(PRIORITY_MAP.values()):
-                add_to_history(loaded_dict, user_indications, entry.path, "clean_games", game)
+            elif lvl0 and priority_lvl == max(PRIORITY_MAP.values()):
+                cat = "clean_games"
+                if to_scan_manually:
+                    cat = "waiting_manual_scan"
+                add_to_history(loaded_dict, user_indications, entry.path, cat, game)
     return 0, increase_max_nb
 
 def main():
@@ -291,7 +314,7 @@ def main():
                 priority_lvl = 1
                 max_file_packets = 1
                 while priority_lvl <= max(PRIORITY_MAP.values()):
-                    err, increase_max_nb = analyze_directory(GAMES_FOLDER_DIRECT_PATH, game_paths_dict, game_paths_dict, nb_analyzed, loaded_dict, {"clean_games": [], "suspicious_games": [], "waiting_manual_scan": []}, new_extensions, "", priority_lvl, time_increment, min_time, max_time, max_file_packets, 1)
+                    err, increase_max_nb = analyze_directory(GAMES_FOLDER_DIRECT_PATH, game_paths_dict, game_paths_dict, nb_analyzed, loaded_dict, {"clean_games": [], "suspicious_games": [], "waiting_manual_scan": []}, new_extensions, "", priority_lvl, time_increment, min_time, max_time, max_file_packets, 0)
                     if err == 1:
                         break
                     if increase_max_nb:

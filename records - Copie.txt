@@ -1734,6 +1734,8 @@
             }
         }
     },
-    "clean_games": [],
+    "clean_games": [
+        "RJ184230_-_Kamikaze_Kommittee_Ouka_RPG_ver105"
+    ],
     "suspicious_games": []
 }
