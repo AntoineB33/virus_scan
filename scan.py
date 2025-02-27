@@ -4,6 +4,8 @@ import requests
 import shutil
 import json
 
+#TODO : check more deeply if a game has already been scanned in the past (not just the name)
+
 # Folder path you want to scan
 GAMES_FOLDER_DIRECT_PATH = "C:/Users/abarb/Documents/health/news_underground/games/downloaded/to_scan"
 MAX_FILES_PER_GAME = 1000
@@ -58,6 +60,7 @@ max_size = 32 * 1024 * 1024
 
 # File to store paths of analyzed files
 WHAT_TO_DO_PATH = "C:/Users/abarb/Documents/health/news_underground/games/downloaded/virus_scan/what_to_do.txt"
+WHAT_TO_DO_PATH_PREV = "C:/Users/abarb/Documents/health/news_underground/games/downloaded/virus_scan/what_to_do_prev.txt"
 RECORDS_PATH = "C:/Users/abarb/Documents/health/news_underground/games/downloaded/virus_scan/programs/records.txt"
 API_KEY_PATH = "C:/Users/abarb/Documents/health/news_underground/games/downloaded/virus_scan/programs/API_KEY.txt"
 
@@ -144,7 +147,7 @@ def save_paths_dict(paths_dict, file_path):
         json.dump(paths_dict, f, indent=4)
 
 def load_paths_dict(file_path, folder_path):
-    loaded_data = {"paths_dict": {}, "time_to_wait": 5, "nb_analyzed": {}, "clean_games": [], "suspicious_games": []}
+    loaded_data = {"paths_dict": {"priority_compltd": 0, "files": {}, "dirs": {}}, "time_to_wait": 5}
     if os.path.exists(file_path):
         with open(file_path, 'r') as f:
             loaded_data = json.load(f)
@@ -155,23 +158,16 @@ def load_paths_dict(file_path, folder_path):
 
     # Traverse to the target folder in the nested dict
     current_level = loaded_data["paths_dict"]
-    current_level_nb = loaded_data["nb_analyzed"]
     for part in folder_parts:
-        if part not in current_level:
-            current_level[part] = {}
-            current_level_nb[part] = {}
-        current_level = current_level[part]
-        current_level_nb = current_level_nb[part]
+        if part not in current_level["dirs"]:
+            current_level["dirs"][part] = {"priority_compltd": 0, "files": {}, "dirs": {}, "nb_analyzed": 0}
+        current_level = current_level["dirs"][part]
     
-    return loaded_data, current_level, current_level_nb
+    return loaded_data, current_level
 
-def add_to_history(loaded_dict, user_indications, path, cat, game = ''):
+def add_to_history(loaded_dict, user_indications, path, cat):
     user_indications[cat].append(path)
-    if game:
-        loaded_dict[cat].append(game)
-        if len(user_indications[cat]) > MAX_HISTORY:
-            loaded_dict[cat].pop(0)
-        save_paths_dict(loaded_dict, RECORDS_PATH)
+    save_paths_dict(loaded_dict, RECORDS_PATH)
     save_paths_dict(user_indications, WHAT_TO_DO_PATH)
 
 # Function to filter files and directories
@@ -185,21 +181,21 @@ def filter_entries(directory):
                 current_entries["dirs"].add(entry.name)
     return current_entries
 
-def analyze_directory(directory, paths_dict, game_paths_dict, nb_analyzed, loaded_dict, user_indications, new_extensions, game, priority_lvl, time_increment, min_time, max_time, max_file_packets, to_scan_manually):
+def analyze_directory(directory, paths_dict, game_paths_dict, loaded_dict, user_indications, new_extensions, game, priority_lvl, time_increment, min_time, max_time, max_file_packets, to_scan_manually):
     """Recursively analyze files in the directory before its subdirectories."""
+
     # Process all files in the current directory
     current_entries = filter_entries(directory)
     for entryType in ["files", "dirs"]:
         for element in list(paths_dict[entryType].keys()):
             if element not in current_entries[entryType]:
                 del paths_dict[entryType][element]
-                if not game:
-                    del nb_analyzed[element]
 
     if game:
+        nb_analyzed = game_paths_dict["dirs"][game]
         for entry in os.scandir(directory):
             if entry.is_file():
-                if game and nb_analyzed[game] >= max_file_packets * FILES_MAX_PER_GAME_PER_PRIO:
+                if nb_analyzed["nb_analyzed"] >= max_file_packets * FILES_MAX_PER_GAME_PER_PRIO:
                     return 0, 1, to_scan_manually
                 if should_skip_file(entry.name, new_extensions, priority_lvl):
                     continue
@@ -210,8 +206,8 @@ def analyze_directory(directory, paths_dict, game_paths_dict, nb_analyzed, loade
                     continue
                 if entry.stat().st_size > max_size:
                     if game:
-                        nb_analyzed[game] += 1
-                        if nb_analyzed[game] >= MAX_FILES_PER_GAME:
+                        nb_analyzed["nb_analyzed"] += 1
+                        if nb_analyzed["nb_analyzed"] >= MAX_FILES_PER_GAME:
                             return 0, 1, 1
                     add_to_history(loaded_dict, user_indications, path, "waiting_manual_scan")
                     continue
@@ -223,7 +219,7 @@ def analyze_directory(directory, paths_dict, game_paths_dict, nb_analyzed, loade
                 # analysis_id = "NDA4NDE3ZmE0ZjIyYjM2Y2U4YjliMjJlM2M4ZDE4YzQ6MTczNTMwMDQ0NQ===="
                 report = None
                 nb_analysis_req = 0
-                print(game, nb_analyzed[game], max_file_packets, FILES_MAX_PER_GAME_PER_PRIO)
+                print(game, nb_analyzed["nb_analyzed"], max_file_packets, FILES_MAX_PER_GAME_PER_PRIO)
                 while not report or (stats:=report["data"]["attributes"]["stats"])['undetected'] == 0 and stats['suspicious'] == 0 and stats['malicious'] == 0 and stats['harmless'] == 0:
                     print("[*] Waiting for analysis results...")
                     if nb_analysis_req and loaded_dict["time_to_wait"] + time_increment <= max_time:
@@ -244,7 +240,7 @@ def analyze_directory(directory, paths_dict, game_paths_dict, nb_analyzed, loade
                     return 2, 0, 0
                 paths_dict["files"][entry.name] = None
                 if game:
-                    nb_analyzed[game] += 1
+                    nb_analyzed["nb_analyzed"] += 1
                 save_paths_dict(loaded_dict, RECORDS_PATH)
             
     
@@ -266,21 +262,11 @@ def analyze_directory(directory, paths_dict, game_paths_dict, nb_analyzed, loade
                         continue
             else:
                 if lvl0:
-                    found = 0
-                    for cat in ["clean_games", "waiting_manual_scan", "suspicious_games"]:
-                        if entry.name in loaded_dict[cat]:
-                            add_to_history(loaded_dict, user_indications, entry.path, "clean_games", game)
-                            found = 1
-                            break
-                    if found:
-                        continue
                     to_scan_manually = 0
-                paths_dict["dirs"][entry.name] = {"priority_compltd": 0, "files": {}, "dirs": {}}
-                if lvl0:
-                    nb_analyzed[game] = 0
+                paths_dict["dirs"][entry.name] = {"priority_compltd": 0, "files": {}, "dirs": {}, "nb_analyzed": 0}
             if paths_dict["dirs"][entry.name]["priority_compltd"] >= priority_lvl:
                 continue
-            err, increase_max_nb_temp, to_scan_manually = analyze_directory(entry.path, paths_dict["dirs"][entry.name], game_paths_dict, nb_analyzed, loaded_dict, user_indications, new_extensions, game, priority_lvl, time_increment, min_time, max_time, max_file_packets, to_scan_manually)
+            err, increase_max_nb_temp, to_scan_manually = analyze_directory(entry.path, paths_dict["dirs"][entry.name], game_paths_dict, loaded_dict, user_indications, new_extensions, game, priority_lvl, time_increment, min_time, max_time, max_file_packets, to_scan_manually)
             if err == 1:
                 return 1, 0, 0
             if err == 2:
@@ -295,7 +281,7 @@ def analyze_directory(directory, paths_dict, game_paths_dict, nb_analyzed, loade
                 if to_scan_manually:
                     cat = "waiting_manual_scan"
                 add_to_history(loaded_dict, user_indications, entry.path, cat, game)
-    return 0, increase_max_nb
+    return 0, increase_max_nb, to_scan_manually
 
 def main():
     while 1:
@@ -304,7 +290,19 @@ def main():
                 raise Exception(f"Folder {GAMES_FOLDER_DIRECT_PATH} does not exist.")
             if not os.path.isdir(GAMES_FOLDER_DIRECT_PATH):
                 raise Exception(f"{GAMES_FOLDER_DIRECT_PATH} is not a folder.")
-            loaded_dict, game_paths_dict, nb_analyzed = load_paths_dict(RECORDS_PATH, GAMES_FOLDER_DIRECT_PATH)
+            loaded_dict, game_paths_dict = load_paths_dict(RECORDS_PATH, GAMES_FOLDER_DIRECT_PATH)
+
+            # save previous "what_to_do" file
+            try:
+                with open(WHAT_TO_DO_PATH, "r") as f:
+                    user_indications = json.load(f)
+                    with open(WHAT_TO_DO_PATH_PREV, "w") as f:
+                        json.dump(user_indications, f, indent=4)
+            except:
+                pass
+
+            user_indications = {"clean_games": [], "suspicious_games": [], "waiting_manual_scan": []}
+            save_paths_dict(user_indications, WHAT_TO_DO_PATH)
             while 1:
                 err = 0
                 time_increment = 5
@@ -314,7 +312,7 @@ def main():
                 priority_lvl = 1
                 max_file_packets = 1
                 while priority_lvl <= max(PRIORITY_MAP.values()):
-                    err, increase_max_nb = analyze_directory(GAMES_FOLDER_DIRECT_PATH, game_paths_dict, game_paths_dict, nb_analyzed, loaded_dict, {"clean_games": [], "suspicious_games": [], "waiting_manual_scan": []}, new_extensions, "", priority_lvl, time_increment, min_time, max_time, max_file_packets, 0)
+                    err, increase_max_nb, to_scan_manually = analyze_directory(GAMES_FOLDER_DIRECT_PATH, game_paths_dict, game_paths_dict, loaded_dict, user_indications, new_extensions, "", priority_lvl, time_increment, min_time, max_time, max_file_packets, 0)
                     if err == 1:
                         break
                     if increase_max_nb:

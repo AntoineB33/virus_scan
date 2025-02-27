@@ -5,8 +5,7 @@ set PYTHON_EXECUTABLE=python
 REM List of Python script paths (absolute or relative)
 REM Add the full paths to your Python files below
 setlocal enabledelayedexpansion
-set SCRIPT_LIST="C:\Users\abarb\Documents\health\vue\clock\clock.py"
-@REM set SCRIPT_LIST="C:\Users\abarb\Documents\health\news_underground\games\downloaded\virus_scan\programs\scan.py" "C:\Users\abarb\Documents\health\vue\clock\clock.py"
+set SCRIPT_LIST="C:\Users\abarb\Documents\health\news_underground\games\downloaded\virus_scan\programs\scan.py" "C:\Users\abarb\Documents\health\vue\clock\clock.py"
 
 REM Loop through each script in the list
 for %%S in (%SCRIPT_LIST%) do (
