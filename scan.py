@@ -7,7 +7,7 @@ import json
 #TODO : check more deeply if a game has already been scanned in the past (not just the name)
 
 # Folder path you want to scan
-GAMES_FOLDER_DIRECT_PATH = "C:/Users/abarb/Documents/health/news_underground/games/downloaded/to_scan"
+GAMES_FOLDER_DIRECT_PATH = r"C:\Users\antoi\Documents\Home\health\entertainment\news_underground\games\downloaded\scanned\male mc ntr\Bawdy_Traditions-v1.2.5-Windows\Bawdy Traditions 1.2.5"
 MAX_FILES_PER_GAME = 1000
 FILES_MAX_PER_GAME_PER_PRIO = 20
 MAX_HISTORY = 1000
@@ -59,10 +59,10 @@ SKIP_EXTENSIONS = {
 max_size = 32 * 1024 * 1024
 
 # File to store paths of analyzed files
-WHAT_TO_DO_PATH = "C:/Users/abarb/Documents/health/news_underground/games/downloaded/virus_scan/what_to_do.txt"
-WHAT_TO_DO_PATH_PREV = "C:/Users/abarb/Documents/health/news_underground/games/downloaded/virus_scan/what_to_do_prev.txt"
-RECORDS_PATH = "C:/Users/abarb/Documents/health/news_underground/games/downloaded/virus_scan/programs/records.txt"
-API_KEY_PATH = "C:/Users/abarb/Documents/health/news_underground/games/downloaded/virus_scan/programs/API_KEY.txt"
+WHAT_TO_DO_PATH = "what_to_do.txt"
+WHAT_TO_DO_PATH_PREV = "what_to_do_prev.txt"
+RECORDS_PATH = "records.txt"
+API_KEY_PATH = "API_KEY.txt"
 
 # VirusTotal endpoints
 UPLOAD_URL = "https://www.virustotal.com/api/v3/files"

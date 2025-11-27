@@ -1,0 +1,2 @@
+API_KEY = "55982c61607a364c2938ed2a085bb963aca167948f96d2ba8ab4f011ff1c79d6"
+FOLDER_TO_SCAN = r"C:\Users\antoi\Documents\Home\health\entertainment\news_underground\games\downloaded\scanned\male mc ntr\Bawdy_Traditions-v1.2.5-Windows\Bawdy Traditions 1.2.5"
