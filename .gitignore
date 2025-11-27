@@ -1,3 +1,6 @@
 API_KEY.txt
 records.txt
 records - Copy.txt
+
+config.py
+__pycache__/**
