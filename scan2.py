@@ -122,46 +122,59 @@ def main():
         print(f"Folder not found: {FOLDER_TO_SCAN}")
         sys.exit()
 
-    print(f"Scanning folder: {FOLDER_TO_SCAN}")
-    print("Files will be scanned in priority order.\n")
+    print(f"Scanning directory recursively: {FOLDER_TO_SCAN}")
+    print("Files will be processed based on threat priority.\n")
 
-    files = [f for f in os.listdir(FOLDER_TO_SCAN) if os.path.isfile(os.path.join(FOLDER_TO_SCAN, f))]
+    # ==============================
+    # 🔥 RECURSIVE FILE COLLECTION
+    # ==============================
+    all_files = []
+    for root, dirs, files in os.walk(FOLDER_TO_SCAN):
+        for f in files:
+            full_path = os.path.join(root, f)
+            all_files.append(full_path)
 
-    # 🔥 SORT BASED ON THREAT PRIORITY
-    files.sort(key=get_priority)
+    # Sort based on risk priority (highest priority first)
+    all_files.sort(key=lambda x: get_priority(os.path.basename(x)))
 
-    for filename in files:
-        filepath = os.path.join(FOLDER_TO_SCAN, filename)
-        print(f"[START] -> {filename} (Priority {get_priority(filename)})")
+    # ==============================
+    # 🔥 SCANNING LOOP
+    # ==============================
+    for filepath in all_files:
+        filename = os.path.basename(filepath)
+        priority = get_priority(filename)
 
-        file_hash = calculate_sha256(filepath)
-        print(f"   [i] SHA256: {file_hash}")
+        print(f"[START] -> {filepath}  (Priority {priority})")
 
-        stats = get_report_by_hash(file_hash)
+        sha = calculate_sha256(filepath)
+        print(f"   [i] SHA256: {sha}")
+
+        stats = get_report_by_hash(sha)
         time.sleep(16)
 
-        if not stats:
-            print("   [-] Not found → Uploading...")
+        if stats is None:
+            print("   [-] No existing report → Uploading file...")
             analysis_id = upload_file(filepath)
+
             time.sleep(16)
             if analysis_id:
                 stats = get_analysis_result(analysis_id)
             else:
                 continue
         else:
-            print("   [+] Existing report found.")
+            print("   [+] Report already exists.")
 
         if stats:
-            red_flags = stats['malicious']
+            red = stats['malicious']
             total = sum(stats.values())
-            print(f"   [RESULT] {red_flags}/{total} engines flagged")
+            print(f"   [RESULT] {red}/{total} engines flagged")
 
-            if red_flags > 0:
-                print("   [!!!] WARNING — MALICIOUS FILE DETECTED!")
+            if red > 0:
+                print("   [!!!] MALICIOUS FILE FOUND — SCAN STOPPED")
                 return
 
-        print("-" * 50)
-
+        print("-" * 60)
 
 if __name__ == "__main__":
     main()
+    input("Scanning complete. Press Enter to exit...")
