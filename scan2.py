@@ -2,9 +2,9 @@ import os
 import time
 import hashlib
 import requests
-import sys
 import config
 from pathlib import Path
+import json
 
 # Try to import win32com for shortcut handling
 try:
@@ -20,6 +20,8 @@ API_KEY = config.API_KEY
 FOLDER_TO_SCAN = config.FOLDER_TO_SCAN
 GAME_PATH_EXAMPLE = config.GAME_PATH_EXAMPLE
 LOG_FILE_PATH = config.LOG_FILE_PATH
+FOLDER_HASHES_PATH = config.FOLDER_HASHES_PATH
+RED_FLAG_THRESHOLD = config.RED_FLAG_THRESHOLD
 # =================================================
 
 # Priority mapping (lower number = higher scan priority)
@@ -42,13 +44,44 @@ def get_priority(filename):
     return PRIORITY_MAP.get(ext, 10)   # unknown = lowest priority
 
 
-def calculate_sha256(filepath):
+def calculate_hash_flexible(path, folder_hash_to_red_nb):
     sha256_hash = hashlib.sha256()
+    
+    # Case 1: It's a single file
+    if os.path.isfile(path):
+        return _update_hash_with_file(sha256_hash, path)
+    
+    # Case 2: It's a directory
+    elif os.path.isdir(path):
+        # Walk through the directory
+        for root, dirs, files in os.walk(path):
+            if root in folder_hash_to_red_nb:
+                _update_hash_with_file(sha256_hash, file_path)
+                dirs[:] = []
+                continue
+
+            # Sort to ensure deterministic behavior (same files = same hash)
+            files.sort()
+            for file in files:
+                file_path = os.path.join(root, file)
+                
+                # Optional: Hash the filename so renaming files changes the folder hash
+                # sha256_hash.update(file.encode('utf-8')) 
+                
+                _update_hash_with_file(sha256_hash, file_path)
+                    
+        return sha256_hash.hexdigest()
+    
+    else:
+        raise Exception("Path does not exist or is not a valid file/folder")
+
+def _update_hash_with_file(hash_obj, filepath):
+    """Helper function to read chunks"""
     try:
         with open(filepath, "rb") as f:
             for byte_block in iter(lambda: f.read(4096), b""):
-                sha256_hash.update(byte_block)
-        return sha256_hash.hexdigest()
+                hash_obj.update(byte_block)
+        return hash_obj.hexdigest()
     except Exception as e:
         print(f"   [!] Error reading file {filepath}: {e}")
         raise Exception("FILE_READ_ERROR")
@@ -176,6 +209,13 @@ def get_analysis_result(analysis_id):
             print(f"\n   [Error] Analysis check failed: {response.status_code}")
             raise Exception("ANALYSIS_CHECK_FAILED")
 
+def update_folder_hashes(splited_path, red, game_root_depth, folder_hash_to_red_nb):
+    for j in range(len(splited_path) - 1, game_root_depth, -1):
+        path = os.sep.join(splited_path[:j])
+        folder_hash_to_red_nb[calculate_hash_flexible(path, folder_hash_to_red_nb)] = red
+    with open(FOLDER_HASHES_PATH, 'w') as f:
+        json.dump(folder_hash_to_red_nb, f)
+        print("Data saved!")
 
 def main():
     if API_KEY == 'YOUR_API_KEY_HERE':
@@ -201,8 +241,21 @@ def main():
     files_to_scan_list = []
 
     print("   [i] Building file list and resolving shortcuts...")
-    
+
+    try:
+        with open(FOLDER_HASHES_PATH, 'r') as f:
+            folder_hash_to_red_nb = json.load(f)
+    except FileNotFoundError:
+        folder_hash_to_red_nb = {}
+
     for root, dirs, files in os.walk(FOLDER_TO_SCAN):
+        if root in folder_hash_to_red_nb:
+            if folder_hash_to_red_nb[root] > 0:
+                splited_path = root.strip(os.sep).split(os.sep)
+                update_folder_hashes(splited_path[:len(splited_path) - 1], folder_hash_to_red_nb[root], game_root_depth, folder_hash_to_red_nb)
+            dirs[:] = []
+            continue
+
         for f in files:
             full_path = os.path.abspath(os.path.join(root, f))
             
@@ -244,13 +297,15 @@ def main():
                 if files_to_scan_list[i].startswith(game_root):
                     last_file_per_game[game_root] = files_to_scan_list[i]
                     break
-    last_file_per_folder = {}
+    folder_to_last_file = {}
+    last_file_to_folder = {}
     folder_hashes = {}
     for filepath in reversed(files_to_scan_list):
         folder = os.path.dirname(filepath)
-        if folder not in last_file_per_folder:
-            last_file_per_folder[folder] = filepath
-            folder_hashes[folder] = calculate_sha256(filepath)
+        if folder not in folder_to_last_file:
+            folder_hashes[folder] = calculate_hash_flexible(filepath)
+            folder_to_last_file[folder] = filepath
+            last_file_to_folder[filepath] = folder
 
     print(f"   [i] Total unique files to scan: {len(files_to_scan_list)}\n")
 
@@ -267,7 +322,7 @@ def main():
         print(f"[START] -> {filename}  (Priority {priority})")
         print(f"        Path: {filepath}")
 
-        sha = calculate_sha256(filepath)
+        sha = calculate_hash_flexible(filepath)
         if not sha:
             continue
             
@@ -285,7 +340,6 @@ def main():
         else:
             print("   [+] Report already exists.")
 
-        game_root = os.sep.join(filepath.strip(os.sep).split(os.sep)[:game_root_depth])
         if stats:
             red = stats['malicious']
             total = sum(stats.values())
@@ -293,14 +347,22 @@ def main():
 
             if red > 0:
                 print("   [!!!] MALICIOUS FILE FOUND — SCAN STOPPED")
+                splited_path = filepath.strip(os.sep).split(os.sep)
+                game_root = os.sep.join(splited_path[:game_root_depth])
                 files_to_scan_list = [path for path in files_to_scan_list if not path.startswith(game_root)]
                 with open(LOG_FILE_PATH, 'a') as log_file:
                     log_file.write(f"Malicious file detected: {filepath} | {red}/{total} engines flagged\n")
+                update_folder_hashes(splited_path, red, game_root_depth, folder_hash_to_red_nb)
             else:
-                if last_file_per_game.get(game_root) == filepath:
+                if filepath in last_file_to_folder:
+                    game_root = last_file_to_folder[filepath]
                     print("   [i] Last file in game scanned, no threats found.")
                     with open(LOG_FILE_PATH, 'a') as log_file:
                         log_file.write(f"Game scanned clean: {game_root}\n")
+                    folder_hash_to_red_nb[calculate_hash_flexible(filepath)] = 0
+                    with open(FOLDER_HASHES_PATH, 'w') as f:
+                        json.dump(folder_hash_to_red_nb, f)
+                        print("Data saved!")
 
         print("-" * 60)
 
