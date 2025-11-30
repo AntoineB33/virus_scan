@@ -17,9 +17,10 @@ except ImportError:
 
 # ================= CONFIGURATION =================
 API_KEY = config.API_KEY
+LOG_FILE_PATH = config.LOG_FILE_PATH
+LAST_STOP_FILE_PATH = config.LAST_STOP_FILE_PATH
 FOLDER_TO_SCAN = config.FOLDER_TO_SCAN
 GAME_PATH_EXAMPLE = config.GAME_PATH_EXAMPLE
-LOG_FILE_PATH = config.LOG_FILE_PATH
 # =================================================
 
 # Priority mapping (lower number = higher scan priority)
@@ -143,18 +144,20 @@ class Scan:
         return False
 
 
-    def get_report_by_hash(self, file_hash):
+    def get_report_by_hash(self, file_hash, filepath):
         headers = {'x-apikey': API_KEY}
         url = f"{FILES_URL}/{file_hash}"
         response = requests.get(url, headers=headers)
 
         if self.check_rate_limit(response):
-            return self.get_report_by_hash(file_hash)
+            return self.get_report_by_hash(file_hash, filepath)
 
         if response.status_code == 200:
             data = response.json()
             return data['data']['attributes']['last_analysis_stats']
         elif response.status_code == 404:
+            with open(LOG_FILE_PATH, 'a') as log_file:
+                log_file.write(f"No report found for file: {filepath}, hash: {file_hash}\n")
             raise Exception("NO_REPORT")
         else:
             print(f"   [Error] Check failed: {response.status_code} - {response.text}")
@@ -284,6 +287,16 @@ class Scan:
                     if files_to_scan_list[i].startswith(game_root):
                         last_file_per_game[game_root] = files_to_scan_list[i]
                         break
+        
+        if os.path.exists(LAST_STOP_FILE_PATH):
+            with open(LAST_STOP_FILE_PATH, 'r') as last_stop_file:
+                last_stopped_file = last_stop_file.read().strip()
+                if last_stopped_file in files_to_scan_list:
+                    last_index = files_to_scan_list.index(last_stopped_file)
+                    files_to_scan_list = files_to_scan_list[last_index + 1:]
+                    print(f"   [i] Resuming from last scanned file: {last_stopped_file}")
+                else:
+                    print("   [i] Last scanned file not found in current scan list. Starting from beginning.")
 
         print(f"   [i] Total unique files to scan: {len(files_to_scan_list)}\n")
 
@@ -306,7 +319,13 @@ class Scan:
                 
             print(f"   [i] SHA256: {sha}")
 
-            stats = self.get_report_by_hash(sha)
+            try:
+                stats = self.get_report_by_hash(sha, filepath)
+            except Exception as e:
+                if str(e) == "NO_REPORT":
+                    stats = None
+                else:
+                    raise e
             time.sleep(16)
 
             if stats is None:
@@ -324,7 +343,7 @@ class Scan:
                 print(f"   [RESULT] {red}/{total} engines flagged")
 
                 if red > 0:
-                    print("   [!!!] MALICIOUS FILE FOUND — SCAN STOPPED")
+                    print("   [!!!] MALICIOUS FILE FOUND")
                     splited_path = filepath.strip(os.sep).split(os.sep)
                     game_root = os.sep.join(splited_path[:self.game_root_depth])
                     files_to_scan_list = [path for path in files_to_scan_list if not path.startswith(game_root)]
@@ -336,6 +355,8 @@ class Scan:
                         print("   [i] Last file in game scanned, no threats found.")
                         with open(LOG_FILE_PATH, 'a') as log_file:
                             log_file.write(f"Game scanned clean: {directory}\n")
+                with open(LAST_STOP_FILE_PATH, 'w') as last_stop_file:
+                    last_stop_file.write(filepath)
 
             print("-" * 60)
 
