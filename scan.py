@@ -1,344 +1,372 @@
 import os
 import time
+import hashlib
 import requests
-import shutil
+import config
+from pathlib import Path
 import json
 
-#TODO : check more deeply if a game has already been scanned in the past (not just the name)
+# Try to import win32com for shortcut handling
+try:
+    import win32com.client
+    WIN32_AVAILABLE = True
+except ImportError:
+    WIN32_AVAILABLE = False
+    print("[!] pywin32 not installed. Shortcuts (.lnk) will not be resolved.")
+    print("    Run: pip install pywin32")
 
-# Folder path you want to scan
-GAMES_FOLDER_DIRECT_PATH = r"C:\Users\antoi\Documents\Home\health\entertainment\news_underground\games\downloaded\scanned\male mc ntr\Bawdy_Traditions-v1.2.5-Windows\Bawdy Traditions 1.2.5"
-MAX_FILES_PER_GAME = 1000
-FILES_MAX_PER_GAME_PER_PRIO = 20
-MAX_HISTORY = 1000
+# ================= CONFIGURATION =================
+API_KEY = config.API_KEY
+LOG_FILE_PATH = config.LOG_FILE_PATH
+LAST_STOP_FILE_PATH = config.LAST_STOP_FILE_PATH
+FOLDER_TO_SCAN = config.FOLDER_TO_SCAN
+GAME_PATH_EXAMPLE = config.GAME_PATH_EXAMPLE
+# =================================================
+
+# Priority mapping (lower number = higher scan priority)
 PRIORITY_MAP = {
-    # Very high risk: directly executable or scripting
-    'exe': 1,
-    'dll': 1,
-    'bat': 1,
-    'cmd': 1,
-    'js': 1,
-    'vbs': 1,
-    'py': 1,
-    'sh': 1,
-    'so': 1,
-    'wasm': 1,
-
-    # High risk: archives (could contain malicious files inside)
-    'zip': 2,
-    'rar': 2,
-    '7z': 2,
-
-    # Medium risk: could contain code or be part of an exploit
-    'htm': 3,
-    'bin': 3,
-
-    # Data/pack files (can still embed code or configurations)
-    'dat': 4,
-    'pak': 4,
-    'vdf': 4,
-    'db': 4,
-
-    # Plain text or structured data: can contain macro-like content or scripts
-    'txt': 5,
-    'json': 5,
-    'xml': 5,
-    'css': 5,
-    '' : 5,
+    'exe': 1, 'dll': 1, 'bat': 1, 'cmd': 1, 'js': 1, 'vbs': 1, 'py': 1, 'sh': 1, 'so': 1, 'wasm': 1,
+    'zip': 2, 'rar': 2, '7z': 2,
+    'htm': 3, 'bin': 3,
+    'dat': 4, 'pak': 4, 'vdf': 4, 'db': 4,
+    'txt': 5, 'json': 5, 'xml': 5, 'css': 5, '': 5,
 }
 
-SKIP_EXTENSIONS = {
-    'png', 'jpg', 'jpeg', 'gif', 'bmp',     # Image files
-    'wav', 'mp3', 'ogg',                    # Audio files
-    'ttf', 'woff', 'otf',                   # Font files
-    'efkefc', 'efkmat', 'efkmodel', 'bdic',  # Proprietary/engine data files
-    'ini',
-    'gitignore'
-}
+# VirusTotal V3 API Endpoints
+BASE_URL = 'https://www.virustotal.com/api/v3'
+FILES_URL = f'{BASE_URL}/files'
+ANALYSES_URL = f'{BASE_URL}/analyses'
 
-max_size = 32 * 1024 * 1024
+class Scan:
+    def get_priority(self, filename):
+        ext = filename.lower().split('.')[-1] if '.' in filename else ''
+        return PRIORITY_MAP.get(ext, 10)   # unknown = lowest priority
 
-# File to store paths of analyzed files
-WHAT_TO_DO_PATH = "what_to_do.txt"
-WHAT_TO_DO_PATH_PREV = "what_to_do_prev.txt"
-RECORDS_PATH = "records.txt"
-API_KEY_PATH = "API_KEY.txt"
 
-# VirusTotal endpoints
-UPLOAD_URL = "https://www.virustotal.com/api/v3/files"
-ANALYSIS_URL = "https://www.virustotal.com/api/v3/analyses/{}"
+    def calculate_merkle_hash(self, path):
+        """
+        Recursively calculates the hash of a directory by combining 
+        the hashes of its children (files and sub-folders).
+        """
+        sha256 = hashlib.sha256()
 
-# Helper function to upload and scan a file
-def upload_file_to_virustotal(file_path):
-    with open(file_path, "rb") as f:
-        files = {"file": (os.path.basename(file_path), f)}
-        headers = {"x-apikey": API_KEY}
-        
-        try:
-            # POST the file to VirusTotal
-            response = requests.post(UPLOAD_URL, headers=headers, files=files)
-            
-            # Check for rate limit exceeded
-            if response.status_code == 429:
-                print("[ERROR] API rate limit exceeded.")
-                return -1
-            
-            # Attempt to parse the JSON response
-            response_json = response.json()
-            
-            # Check for other errors
-            if response.status_code != 200:
-                print(f"[ERROR] Could not upload file: {file_path}")
-                print(response_json)
-                return -1
-            
-            # Extract the analysis ID
-            analysis_id = response_json["data"]["id"]
-            return analysis_id
-        
-        except requests.exceptions.JSONDecodeError:
-            print(f"[ERROR] Failed to parse JSON response for file: {file_path}")
-            print(f"Response content: {response.text}")
-            return -1
+        # Case 1: It's a file
+        if os.path.isfile(path):
+            return self._hash_file_content(path)
 
-        except requests.exceptions.RequestException as e:
-            print(f"[ERROR] Request failed: {e}")
-            return -1
-
-# Helper function to retrieve analysis results
-def get_analysis_report(analysis_id):
-    headers = {"x-apikey": API_KEY}
-    url = ANALYSIS_URL.format(analysis_id)
-    response = requests.get(url, headers=headers)
-    
-    # Check for rate limit exceeded
-    if response.status_code == 429:
-        print("[ERROR] API rate limit exceeded.")
-        return -1
-    
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print(f"[ERROR] Failed to retrieve report for analysis ID {analysis_id}")
-        return None
-
-def should_skip_file(file_path, new_extensions, priority_lvl):
-    """Determine if a file should be skipped based on its extension or prefix."""
-    file_extension = os.path.splitext(file_path)[1].lower()[1:]
-    
-    # Check for prefix match (e.g., '.ogg_')
-    for ext in SKIP_EXTENSIONS | new_extensions:
-        if file_extension.startswith(ext):
-            return True
-    
-    for ext, priority in PRIORITY_MAP.items():
-        if file_extension.startswith(ext):
-            return priority != priority_lvl
-
-    new_extensions.add(file_extension)
-    
-    return True
-
-def save_paths_dict(paths_dict, file_path):
-    """
-    Save the paths_dict to a JSON file.
-    """
-    with open(file_path, 'w') as f:
-        json.dump(paths_dict, f, indent=4)
-
-def load_paths_dict(file_path, folder_path):
-    loaded_data = {"paths_dict": {"priority_compltd": 0, "files": {}, "dirs": {}}, "time_to_wait": 5}
-    if os.path.exists(file_path):
-        with open(file_path, 'r') as f:
-            loaded_data = json.load(f)
-    
-    # Normalize folder_path
-    folder_path = os.path.abspath(folder_path)
-    folder_parts = folder_path.strip(os.sep).split(os.sep)
-
-    # Traverse to the target folder in the nested dict
-    current_level = loaded_data["paths_dict"]
-    for part in folder_parts:
-        if part not in current_level["dirs"]:
-            current_level["dirs"][part] = {"priority_compltd": 0, "files": {}, "dirs": {}, "nb_analyzed": 0}
-        current_level = current_level["dirs"][part]
-    
-    return loaded_data, current_level
-
-def add_to_history(loaded_dict, user_indications, path, cat):
-    user_indications[cat].append(path)
-    save_paths_dict(loaded_dict, RECORDS_PATH)
-    save_paths_dict(user_indications, WHAT_TO_DO_PATH)
-
-# Function to filter files and directories
-def filter_entries(directory):
-    current_entries = {"files": set(), "dirs": set()}
-    with os.scandir(directory) as entries:
-        for entry in entries:
-            if entry.is_file():
-                current_entries["files"].add(entry.name)
-            elif entry.is_dir():
-                current_entries["dirs"].add(entry.name)
-    return current_entries
-
-def analyze_directory(directory, paths_dict, game_paths_dict, loaded_dict, user_indications, new_extensions, game, priority_lvl, time_increment, min_time, max_time, max_file_packets, to_scan_manually):
-    """Recursively analyze files in the directory before its subdirectories."""
-
-    # Process all files in the current directory
-    current_entries = filter_entries(directory)
-    for entryType in ["files", "dirs"]:
-        for element in list(paths_dict[entryType].keys()):
-            if element not in current_entries[entryType]:
-                del paths_dict[entryType][element]
-
-    if game:
-        nb_analyzed = game_paths_dict["dirs"][game]
-        for entry in os.scandir(directory):
-            if entry.is_file():
-                if nb_analyzed["nb_analyzed"] >= max_file_packets * FILES_MAX_PER_GAME_PER_PRIO:
-                    return 0, 1, to_scan_manually
-                if should_skip_file(entry.name, new_extensions, priority_lvl):
-                    continue
-                path = directory + '/' + entry.name
-                if entry.name in paths_dict["files"]:
-                    if paths_dict["files"][entry.name] == "to_manually_scan":
-                        add_to_history(loaded_dict, user_indications, path, "waiting_manual_scan")
-                    continue
-                if entry.stat().st_size > max_size:
-                    if game:
-                        nb_analyzed["nb_analyzed"] += 1
-                        if nb_analyzed["nb_analyzed"] >= MAX_FILES_PER_GAME:
-                            return 0, 1, 1
-                    add_to_history(loaded_dict, user_indications, path, "waiting_manual_scan")
-                    continue
-                print(f"\n[*] Uploading file: {entry.path}")
-                print("new_extensions : ", new_extensions)
-                analysis_id = upload_file_to_virustotal(entry.path)
-                if analysis_id == -1:
-                    return 1, 0, 0
-                # analysis_id = "NDA4NDE3ZmE0ZjIyYjM2Y2U4YjliMjJlM2M4ZDE4YzQ6MTczNTMwMDQ0NQ===="
-                report = None
-                nb_analysis_req = 0
-                print(game, nb_analyzed["nb_analyzed"], max_file_packets, FILES_MAX_PER_GAME_PER_PRIO)
-                while not report or (stats:=report["data"]["attributes"]["stats"])['undetected'] == 0 and stats['suspicious'] == 0 and stats['malicious'] == 0 and stats['harmless'] == 0:
-                    print("[*] Waiting for analysis results...")
-                    if nb_analysis_req and loaded_dict["time_to_wait"] + time_increment <= max_time:
-                        loaded_dict["time_to_wait"] += time_increment
-                    time.sleep(loaded_dict["time_to_wait"])
-                    if (report := get_analysis_report(analysis_id)) == -1:
-                        return 1, 0, 0
-                    nb_analysis_req += 1
-                if nb_analysis_req == 1 and loaded_dict["time_to_wait"] - time_increment >= min_time:
-                    loaded_dict["time_to_wait"] -= time_increment
-                stats = report["data"]["attributes"]["stats"]
-                print(f"  - Harmless: {stats['harmless']}")
-                print(f"  - Malicious: {stats['malicious']}")
-                print(f"  - Suspicious: {stats['suspicious']}")
-                print(f"  - Undetected: {stats['undetected']}")
-                if stats['malicious'] > 0 or stats['suspicious'] > 0:
-                    print("[ALERT] Suspicious or malicious file detected. Stopping the scan.")
-                    return 2, 0, 0
-                paths_dict["files"][entry.name] = None
-                if game:
-                    nb_analyzed["nb_analyzed"] += 1
-                save_paths_dict(loaded_dict, RECORDS_PATH)
-            
-    
-    # Recursively process each subdirectory
-    increase_max_nb = 0
-    lvl0 = not game
-    for entry in os.scandir(directory):
-        if entry.is_dir():
-            if lvl0:
-                game = entry.name
-            if entry.name in paths_dict["dirs"]:
-                if lvl0:
-                    found = 0
-                    for cat in ["clean_games", "waiting_manual_scan", "suspicious_games"]:
-                        if paths_dict["dirs"][entry.name] == cat:
-                            found = 1
-                            break
-                    if found:
-                        continue
-            else:
-                if lvl0:
-                    to_scan_manually = 0
-                paths_dict["dirs"][entry.name] = {"priority_compltd": 0, "files": {}, "dirs": {}, "nb_analyzed": 0}
-            if paths_dict["dirs"][entry.name]["priority_compltd"] >= priority_lvl:
-                continue
-            err, increase_max_nb_temp, to_scan_manually = analyze_directory(entry.path, paths_dict["dirs"][entry.name], game_paths_dict, loaded_dict, user_indications, new_extensions, game, priority_lvl, time_increment, min_time, max_time, max_file_packets, to_scan_manually)
-            if err == 1:
-                return 1, 0, 0
-            if err == 2:
-                if lvl0:
-                    add_to_history(loaded_dict, user_indications, entry.path, "suspicious_games", game)
-                else:
-                    return 2, 0, 0
-            elif increase_max_nb_temp:
-                increase_max_nb = 1
-            elif lvl0 and priority_lvl == max(PRIORITY_MAP.values()):
-                cat = "clean_games"
-                if to_scan_manually:
-                    cat = "waiting_manual_scan"
-                add_to_history(loaded_dict, user_indications, entry.path, cat, game)
-    return 0, increase_max_nb, to_scan_manually
-
-def main():
-    while 1:
-        try:
-            if not os.path.exists(GAMES_FOLDER_DIRECT_PATH):
-                raise Exception(f"Folder {GAMES_FOLDER_DIRECT_PATH} does not exist.")
-            if not os.path.isdir(GAMES_FOLDER_DIRECT_PATH):
-                raise Exception(f"{GAMES_FOLDER_DIRECT_PATH} is not a folder.")
-            loaded_dict, game_paths_dict = load_paths_dict(RECORDS_PATH, GAMES_FOLDER_DIRECT_PATH)
-
-            # save previous "what_to_do" file
+        # Case 2: It's a directory
+        elif os.path.isdir(path):
             try:
-                with open(WHAT_TO_DO_PATH, "r") as f:
-                    user_indications = json.load(f)
-                    with open(WHAT_TO_DO_PATH_PREV, "w") as f:
-                        json.dump(user_indications, f, indent=4)
-            except:
+                # List all items in the directory
+                items = os.listdir(path)
+                # SORTING IS CRITICAL for deterministic hashes
+                items.sort() 
+
+                for item in items:
+                    item_path = os.path.join(path, item)
+
+                    # Recursive call: Get hash of the child (whether file or folder)
+                    child_hash = self.calculate_merkle_hash(item_path)
+                    
+                    # Update current folder hash with:
+                    # 1. The name of the child (detects renaming)
+                    sha256.update(item.encode('utf-8'))
+                    # 2. The hash of the child (detects content changes)
+                    sha256.update(child_hash.encode('utf-8'))
+                
+                return sha256.hexdigest()
+                
+            except PermissionError:
+                print(f" [!] Permission denied: {path}")
+                return "PERMISSION_DENIED" # Return a constant string so it doesn't crash
+
+        else:
+            return "NOT_FOUND"
+
+    def _hash_file_content(self, filepath):
+        """Hashes the content of a single file."""
+        sha256 = hashlib.sha256()
+        try:
+            with open(filepath, "rb") as f:
+                for byte_block in iter(lambda: f.read(4096), b""):
+                    sha256.update(byte_block)
+            return sha256.hexdigest()
+        except Exception as e:
+            print(f" [!] Error reading {filepath}: {e}")
+            return "READ_ERROR"
+
+    def resolve_shortcut(self, lnk_path):
+        """
+        Extracts the target path from a Windows .lnk file using WScript.Shell.
+        """
+        if not WIN32_AVAILABLE:
+            raise Exception("WIN32COM_NOT_AVAILABLE")
+        
+        try:
+            shell = win32com.client.Dispatch("WScript.Shell")
+            shortcut = shell.CreateShortcut(lnk_path)
+            target = shortcut.TargetPath
+            # Expand environment variables if present (e.g., %SystemRoot%)
+            target = os.path.expandvars(target)
+            return target
+        except Exception as e:
+            print(f"   [!] Failed to parse shortcut {os.path.basename(lnk_path)}: {e}")
+            raise Exception("SHORTCUT_PARSE_ERROR")
+
+
+    def check_rate_limit(self, response):
+        """
+        Handles Rate Limits (wait and retry) and Quota Exits (stop script).
+        """
+        if response.status_code == 429:
+            try:
+                # Try to parse the error to see if it's a Quota issue
+                error_data = response.json()
+                error_code = error_data.get('error', {}).get('code', '')
+                
+                if error_code == 'QuotaExceededError':
+                    print("\n" + "="*50)
+                    print(" [X] CRITICAL: DAILY/MONTHLY QUOTA EXCEEDED")
+                    print(" [X] VirusTotal will not accept more requests today.")
+                    print("="*50)
+                    raise Exception("QUOTA_EXCEEDED")
+                
+            except Exception as e:
+                # If the exception IS "QUOTA_EXCEEDED", re-raise it so main() hears it
+                if str(e) == "QUOTA_EXCEEDED":
+                    raise e
                 pass
 
-            user_indications = {"clean_games": [], "suspicious_games": [], "waiting_manual_scan": []}
-            save_paths_dict(user_indications, WHAT_TO_DO_PATH)
-            while 1:
-                err = 0
-                time_increment = 5
-                min_time = 5
-                max_time = 60
-                new_extensions = set()
-                priority_lvl = 1
-                max_file_packets = 1
-                while priority_lvl <= max(PRIORITY_MAP.values()):
-                    err, increase_max_nb, to_scan_manually = analyze_directory(GAMES_FOLDER_DIRECT_PATH, game_paths_dict, game_paths_dict, loaded_dict, user_indications, new_extensions, "", priority_lvl, time_increment, min_time, max_time, max_file_packets, 0)
-                    if err == 1:
+            print("   [!] Rate limit (requests/min) hit. Waiting 60 seconds...")
+            time.sleep(61)
+            return True
+            
+        return False
+
+
+    def get_report_by_hash(self, file_hash, filepath):
+        headers = {'x-apikey': API_KEY}
+        url = f"{FILES_URL}/{file_hash}"
+        response = requests.get(url, headers=headers)
+
+        if self.check_rate_limit(response):
+            return self.get_report_by_hash(file_hash, filepath)
+
+        if response.status_code == 200:
+            data = response.json()
+            return data['data']['attributes']['last_analysis_stats']
+        elif response.status_code == 404:
+            print("   [-] No report found for this file.")
+            raise Exception("NO_REPORT")
+        else:
+            print(f"   [Error] Check failed: {response.status_code} - {response.text}")
+            raise Exception("CHECK_FAILED")
+
+
+    def upload_file(self, filepath):
+        headers = {'x-apikey': API_KEY}
+        try:
+            filesize = os.path.getsize(filepath)
+        except OSError:
+            print("   [Skip] Cannot access file size.")
+            raise Exception("FILE_ACCESS_ERROR")
+
+        if filesize > 32 * 1024 * 1024:
+            print("   [Skip] File too large for standard API (limit 32MB)")
+            raise Exception("FILE_TOO_LARGE")
+
+        try:
+            with open(filepath, 'rb') as file_data:
+                files = {'file': (os.path.basename(filepath), file_data)}
+                response = requests.post(FILES_URL, headers=headers, files=files)
+        except IOError as e:
+            print(f"   [Error] Could not open file for upload: {e}")
+            raise Exception("FILE_OPEN_ERROR")
+
+        if self.check_rate_limit(response):
+            return self.upload_file(filepath)
+
+        if response.status_code == 200:
+            return response.json()['data']['id']
+        else:
+            print(f"   [Error] Upload failed: {response.status_code} - {response.text}")
+            raise Exception("UPLOAD_FAILED")
+
+    def get_analysis_result(self, analysis_id):
+        headers = {'x-apikey': API_KEY}
+        url = f"{ANALYSES_URL}/{analysis_id}"
+
+        print("   [>] Waiting for analysis to complete...", end='', flush=True)
+        
+        while True:
+            response = requests.get(url, headers=headers)
+
+            if self.check_rate_limit(response):
+                continue
+
+            if response.status_code == 200:
+                data = response.json()
+                status = data['data']['attributes']['status']
+
+                if status == 'completed':
+                    print(" Done!")
+                    return data['data']['attributes']['stats']
+                else:
+                    print(".", end='', flush=True)
+                    time.sleep(20)
+            else:
+                print(f"\n   [Error] Analysis check failed: {response.status_code}")
+                raise Exception("ANALYSIS_CHECK_FAILED")
+
+    def main(self):
+        if API_KEY == 'YOUR_API_KEY_HERE':
+            print("Please add your VirusTotal API Key.")
+            raise Exception("NO_API_KEY")
+
+        if not os.path.exists(FOLDER_TO_SCAN):
+            print(f"Folder not found: {FOLDER_TO_SCAN}")
+            raise Exception("FOLDER_NOT_FOUND")
+        
+        if not GAME_PATH_EXAMPLE.startswith(FOLDER_TO_SCAN):
+            print(f"Game path example does not start with folder to scan.")
+            raise Exception("GAME_PATH_MISMATCH")
+        self.game_root_depth = len(GAME_PATH_EXAMPLE.strip(os.sep).split(os.sep))
+
+        print(f"Scanning directory recursively: {FOLDER_TO_SCAN}")
+        print("Files will be processed based on threat priority.\n")
+
+        # ==============================
+        # 🔥 RECURSIVE FILE COLLECTION
+        # ==============================
+        unique_files_set = set() # Used to avoid duplicate scans
+        files_to_scan_list = []
+
+        print("   [i] Building file list and resolving shortcuts...")
+
+        # Creating files_to_scan_list
+        for root, dirs, files in os.walk(FOLDER_TO_SCAN):
+            for f in files:
+                full_path = os.path.abspath(os.path.join(root, f))
+                
+                # Add normal file
+                if full_path not in unique_files_set:
+                    unique_files_set.add(full_path)
+                    files_to_scan_list.append(full_path)
+
+                # Check for Shortcut
+                if f.lower().endswith('.lnk'):
+                    target_path = self.resolve_shortcut(full_path)
+                    
+                    if target_path and os.path.exists(target_path):
+                        target_path = os.path.abspath(target_path)
+                        
+                        if target_path not in unique_files_set:
+                            print(f"       -> Shortcut found: {f} points to {os.path.basename(target_path)}")
+                            unique_files_set.add(target_path)
+                            files_to_scan_list.append(target_path)
+
+        # Sort based on risk priority (highest priority first)
+        files_to_scan_list.sort(key=lambda x: self.get_priority(os.path.basename(x)))
+
+        last_file_per_game = {}
+
+        root = Path(FOLDER_TO_SCAN)
+        
+        # Create a glob pattern like "*/*" for depth 2
+        # The pattern becomes "*" repeated 'depth' times, joined by slash
+        pattern = "/".join(["*"] * (self.game_root_depth - 1))
+        
+        for path in root.glob(pattern):
+            if path.is_dir():
+                print(f"game found: {path}")
+                game_root = str(path)
+                i = len(files_to_scan_list)
+                while i > 0:
+                    i -= 1
+                    if files_to_scan_list[i].startswith(game_root):
+                        last_file_per_game[game_root] = files_to_scan_list[i]
                         break
-                    if increase_max_nb:
-                        max_file_packets += 1
-                    else:
-                        priority_lvl += 1
-                print("new_extensions : ", new_extensions)
-                if input("Do you want to scan again? (Y/n) ").lower() == "n":
-                    return
-        except Exception as e:
-            print(f"Error: {e}")
-            # raise e
-            if input("Do you want to scan again? (Y/n) ").lower() == "n":
-                return
+        
+        if os.path.exists(LAST_STOP_FILE_PATH):
+            with open(LAST_STOP_FILE_PATH, 'r') as last_stop_file:
+                last_stopped_file = last_stop_file.read().strip()
+                if last_stopped_file in files_to_scan_list:
+                    last_index = files_to_scan_list.index(last_stopped_file)
+                    files_to_scan_list = files_to_scan_list[last_index + 1:]
+                    print(f"   [i] Resuming from last scanned file: {last_stopped_file}")
+                else:
+                    print("   [i] Last scanned file not found in current scan list. Starting from beginning.")
+
+        print(f"   [i] Total unique files to scan: {len(files_to_scan_list)}\n")
+
+        # ==============================
+        # 🔥 SCANNING LOOP
+        # ==============================
+        i = -1
+        while i < len(files_to_scan_list) - 1:
+            i += 1
+            filepath = files_to_scan_list[i]
+            filename = os.path.basename(filepath)
+            priority = self.get_priority(filename)
+
+            print(f"[START] -> {filename}  (Priority {priority})")
+            print(f"        Path: {filepath}")
+
+            sha = self.calculate_merkle_hash(filepath)
+            if not sha:
+                continue
+                
+            print(f"   [i] SHA256: {sha}")
+
+            try:
+                stats = self.get_report_by_hash(sha, filepath)
+            except Exception as e:
+                if str(e) == "NO_REPORT":
+                    stats = None
+                else:
+                    raise e
+            time.sleep(16)
+
+            if stats is None:
+                print("   [-] No existing report -> Uploading file...")
+                analysis_id = self.upload_file(filepath)
+
+                time.sleep(16)
+                stats = self.get_analysis_result(analysis_id)
+            else:
+                print("   [+] Report already exists.")
+
+            if stats:
+                red = stats['malicious']
+                total = sum(stats.values())
+                print(f"   [RESULT] {red}/{total} engines flagged")
+                if total == 0:
+                    raise Exception("NO_ENGINES")
+
+                if red > 0:
+                    print("   [!!!] MALICIOUS FILE FOUND")
+                    splited_path = filepath.strip(os.sep).split(os.sep)
+                    game_root = os.sep.join(splited_path[:self.game_root_depth])
+                    files_to_scan_list = [path for path in files_to_scan_list if not path.startswith(game_root)]
+                    with open(LOG_FILE_PATH, 'a') as log_file:
+                        log_file.write(f"Malicious file detected: {filepath} | {red}/{total} engines flagged\n")
+                else:
+                    if filepath in last_file_per_game:
+                        directory = last_file_per_game[filepath]
+                        print("   [i] Last file in game scanned, no threats found.")
+                        with open(LOG_FILE_PATH, 'a') as log_file:
+                            log_file.write(f"Game scanned clean: {directory}\n")
+                with open(LAST_STOP_FILE_PATH, 'w') as last_stop_file:
+                    last_stop_file.write(filepath)
+
+            print("-" * 60)
 
 if __name__ == "__main__":
-    # Get your VirusTotal API key from API_KEY.txt
-    with open(API_KEY_PATH, "r", encoding='utf-8', errors='ignore') as f:
-        API_KEY = f.read().strip()
-
-    main()
-    
-    # report = get_analysis_report("MmU1MWVlMjA0MzRkZTc4ODQyOGUyMGNjODgyZDk2YTI6MTczNTEzMTk3Mw==")
-    # if report:
-    #     stats = report["data"]["attributes"]["stats"]
-    #     print(f"  - Harmless: {stats['harmless']}")
-    #     print(f"  - Malicious: {stats['malicious']}")
-    #     print(f"  - Suspicious: {stats['suspicious']}")
-    #     print(f"  - Undetected: {stats['undetected']}")
+    try:
+        scan = Scan()
+        scan.main()
+    except KeyboardInterrupt:
+        print("\n\n[!] Scan interrupted by user (Ctrl+C). Stopping...")
+    except Exception as e:
+        print(f"Error: {e}")
+    input("Scanning complete. Press Enter to exit...")
