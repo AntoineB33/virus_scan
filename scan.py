@@ -26,7 +26,10 @@ GAME_PATH_EXAMPLE = config.GAME_PATH_EXAMPLE
 # Priority mapping (lower number = higher scan priority)
 PRIORITY_MAP = {
     'exe': 1, 'dll': 1, 'bat': 1, 'cmd': 1, 'js': 1, 'vbs': 1, 'py': 1, 'sh': 1, 'so': 1, 'wasm': 1,
-    'zip': 2, 'rar': 2, '7z': 2,
+    'lnk': 1,                        # You handle this in code, but good to list
+    'iso': 2, 'img': 2,              # Disk images (often contain malware)
+    'zip': 2, 'rar': 2, '7z': 2, 'docm': 2, 'xlsm': 2, 'pptm': 2, # Office files with Macros
+    'pdf': 3,                        # Common exploit vector
     'htm': 3, 'bin': 3,
     'dat': 4, 'pak': 4, 'vdf': 4, 'db': 4,
     'txt': 5, 'json': 5, 'xml': 5, 'css': 5, '': 5,
@@ -38,9 +41,21 @@ FILES_URL = f'{BASE_URL}/files'
 ANALYSES_URL = f'{BASE_URL}/analyses'
 
 class Scan:
-    def get_priority(self, filename):
+    def get_priority(self, filename, filepath=None):
+        # 1. Try to detect if it is a hidden executable by reading the first 2 bytes
+        if filepath and os.path.isfile(filepath):
+            try:
+                with open(filepath, 'rb') as f:
+                    header = f.read(2)
+                    # 'MZ' is the signature for Windows Executables (exe, dll)
+                    if header == b'MZ': 
+                        return 1 # Force high priority regardless of extension
+            except:
+                pass
+
+        # 2. Fallback to extension check
         ext = filename.lower().split('.')[-1] if '.' in filename else ''
-        return PRIORITY_MAP.get(ext, 10)   # unknown = lowest priority
+        return PRIORITY_MAP.get(ext, 10)
 
 
     def calculate_merkle_hash(self, path):
