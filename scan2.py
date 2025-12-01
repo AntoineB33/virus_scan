@@ -156,8 +156,7 @@ class Scan:
             data = response.json()
             return data['data']['attributes']['last_analysis_stats']
         elif response.status_code == 404:
-            with open(LOG_FILE_PATH, 'a') as log_file:
-                log_file.write(f"No report found for file: {filepath}, hash: {file_hash}\n")
+            print("   [-] No report found for this file.")
             raise Exception("NO_REPORT")
         else:
             print(f"   [Error] Check failed: {response.status_code} - {response.text}")
@@ -341,6 +340,8 @@ class Scan:
                 red = stats['malicious']
                 total = sum(stats.values())
                 print(f"   [RESULT] {red}/{total} engines flagged")
+                if total == 0:
+                    raise Exception("NO_ENGINES")
 
                 if red > 0:
                     print("   [!!!] MALICIOUS FILE FOUND")
