@@ -57,47 +57,6 @@ class Scan:
         ext = filename.lower().split('.')[-1] if '.' in filename else ''
         return PRIORITY_MAP.get(ext, 10)
 
-
-    def calculate_merkle_hash(self, path):
-        """
-        Recursively calculates the hash of a directory by combining 
-        the hashes of its children (files and sub-folders).
-        """
-        sha256 = hashlib.sha256()
-
-        # Case 1: It's a file
-        if os.path.isfile(path):
-            return self._hash_file_content(path)
-
-        # Case 2: It's a directory
-        elif os.path.isdir(path):
-            try:
-                # List all items in the directory
-                items = os.listdir(path)
-                # SORTING IS CRITICAL for deterministic hashes
-                items.sort() 
-
-                for item in items:
-                    item_path = os.path.join(path, item)
-
-                    # Recursive call: Get hash of the child (whether file or folder)
-                    child_hash = self.calculate_merkle_hash(item_path)
-                    
-                    # Update current folder hash with:
-                    # 1. The name of the child (detects renaming)
-                    sha256.update(item.encode('utf-8'))
-                    # 2. The hash of the child (detects content changes)
-                    sha256.update(child_hash.encode('utf-8'))
-                
-                return sha256.hexdigest()
-                
-            except PermissionError:
-                print(f" [!] Permission denied: {path}")
-                return "PERMISSION_DENIED" # Return a constant string so it doesn't crash
-
-        else:
-            return "NOT_FOUND"
-
     def _hash_file_content(self, filepath):
         """Hashes the content of a single file."""
         sha256 = hashlib.sha256()
@@ -232,45 +191,6 @@ class Scan:
             else:
                 print(f"\n   [Error] Analysis check failed: {response.status_code}")
                 raise Exception("ANALYSIS_CHECK_FAILED")
-
-    def is_suspicious_file(self, filepath, extension):
-        """
-        Returns True if the file looks weird locally and deserves a VirusTotal scan.
-        Returns False if it looks like a standard asset file (safe to skip).
-        """
-        try:
-            with open(filepath, 'rb') as f:
-                header = f.read(4) # Read first 4 bytes
-            
-            # 1. Executable Camouflage Check
-            # If it claims to be an image/text but has an EXE header
-            if header.startswith(b'MZ'):
-                print(f"   [!] SUSPICIOUS: File {filepath} has .exe header but different extension!")
-                return True
-
-            # 2. Mismatch Check (Example for PNG)
-            # If extension is png but header isn't PNG
-            if extension == 'png' and header != b'\x89PNG':
-                print(f"   [!] SUSPICIOUS: {filepath} claims to be PNG but header is wrong.")
-                return True
-                
-            # 3. Size Checks
-            # Most scripts (.bat, .vbs) are small. If a .bat is 50MB, it's suspicious.
-            size = os.path.getsize(filepath)
-            if extension in ['bat', 'vbs', 'ps1', 'js'] and size > 500 * 1024: # 500KB
-                return True
-
-            # 4. Skip Logic (The Speed Boost)
-            # If it's a media file, has the correct header, and no EXE signature -> SKIP IT
-            if extension in ['png', 'jpg', 'wav', 'ogg', 'mp4']:
-                # We already checked for MZ and header mismatch above. 
-                # If we are here, it's likely safe enough to skip to save API quota.
-                return False 
-
-            return True # Scan everything else by default
-            
-        except Exception:
-            return True # If we can't read it, scan it.
         
     def main(self):
         if API_KEY == 'YOUR_API_KEY_HERE':
@@ -369,10 +289,10 @@ class Scan:
             red = 0
        
             # ONLY SCAN IF SUSPICIOUS OR HIGH PRIORITY
-            if 1 or priority == 1 or self.is_suspicious_file(filepath, ext):
+            if 1 or priority == 1:
                 print(f"[START] -> {filename}  (Priority {priority})")
                 print(f"        Path: {filepath}")
-                sha = self.calculate_merkle_hash(filepath)
+                sha = self._hash_file_content(filepath)
                 if not sha:
                     continue
                     
