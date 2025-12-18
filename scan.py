@@ -159,9 +159,17 @@ class Scan:
             print(f"   [Error] Could not open file for upload: {e}")
             raise Exception("FILE_OPEN_ERROR")
 
+        # 1. Check Rate Limits (429)
         if self.check_rate_limit(response):
             return self.upload_file(filepath)
 
+        # 2. Check Server Errors (502, 500, 503, 504)
+        # If VirusTotal is having a hiccup, wait 60s and try again.
+        if 500 <= response.status_code < 600:
+            print(f"   [!] VirusTotal Server Error ({response.status_code}). Retrying in 60 seconds...")
+            time.sleep(60)
+            return self.upload_file(filepath)
+        
         if response.status_code == 200:
             return response.json()['data']['id']
         else:
@@ -235,7 +243,10 @@ class Scan:
                 if candidate_path:
                     # Check if it actually exists and is a directory
                     if os.path.isdir(candidate_path):
-                        extracted_paths.append(candidate_path)
+                        # add only the game directory level
+                        splited_path = candidate_path.strip(os.sep).split(os.sep)
+                        game_root = os.sep.join(splited_path[:self.game_root_depth])
+                        extracted_paths.append(game_root)
                     else:
                         logging.error(f"Line {line_number}: Path found but is not a valid directory or no longer exists: {candidate_path}")
                 else:
