@@ -1,4 +1,6 @@
 import os
+import logging
+import re
 import time
 import hashlib
 import requests
@@ -191,7 +193,57 @@ class Scan:
             else:
                 print(f"\n   [Error] Analysis check failed: {response.status_code}")
                 raise Exception("ANALYSIS_CHECK_FAILED")
+            
+    def parse_scan_logs(self):
+        extracted_paths = []
+
+        # Regex components based on your f-strings:
+        # Timestamp: YYYY-MM-DD HH:MM:SS
+        timestamp_pattern = r"\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}"
         
+        # Pattern 1: Malicious file detected: {filepath} | {red}/{total} engines flagged
+        # We use (.+) to capture the filepath. We escape the pipe character \|.
+        malicious_regex = re.compile(rf"^{timestamp_pattern} Malicious file detected: (.+) \| \d+/\d+ engines flagged$")
+
+        # Pattern 2: Game scanned clean: {directory}
+        clean_regex = re.compile(rf"^{timestamp_pattern} Game scanned clean: (.+)$")
+
+        os.makedirs(os.path.dirname(LOG_FILE_PATH), exist_ok=True)
+
+        with open(LOG_FILE_PATH, 'r') as file:
+            for line_number, line in enumerate(file, 1):
+                line = line.strip()
+                if not line:
+                    continue
+
+                candidate_path = None
+
+                # Attempt to match "Clean" format
+                clean_match = clean_regex.match(line)
+                if clean_match:
+                    candidate_path = clean_match.group(1).strip()
+
+                # Attempt to match "Malicious" format
+                if not candidate_path:
+                    malicious_match = malicious_regex.match(line)
+                    if malicious_match:
+                        # Capture is likely a filename, extract the directory part
+                        full_path = malicious_match.group(1).strip()
+                        candidate_path = os.path.dirname(full_path)
+
+                # --- Validation Logic ---
+                if candidate_path:
+                    # Check if it actually exists and is a directory
+                    if os.path.isdir(candidate_path):
+                        extracted_paths.append(candidate_path)
+                    else:
+                        logging.error(f"Line {line_number}: Path found but is not a valid directory or no longer exists: {candidate_path}")
+                else:
+                    # Only log error if neither regex matched
+                    logging.error(f"Line {line_number} does not match expected format: {line}")
+
+        return extracted_paths
+
     def main(self):
         if API_KEY == 'YOUR_API_KEY_HERE':
             print("Please add your VirusTotal API Key.")
@@ -214,11 +266,19 @@ class Scan:
         # ==============================
         unique_files_set = set() # Used to avoid duplicate scans
         files_to_scan_list = []
+        
+        parsed_games = self.parse_scan_logs()
 
         print("   [i] Building file list and resolving shortcuts...")
 
         # Creating files_to_scan_list
         for root, dirs, files in os.walk(FOLDER_TO_SCAN):
+            for d in dirs[:]:
+                dir_abs_path = os.path.abspath(os.path.join(root, d))
+                
+                if dir_abs_path in parsed_games:
+                    dirs.remove(d)
+                    
             for f in files:
                 full_path = os.path.abspath(os.path.join(root, f))
                 
@@ -261,15 +321,15 @@ class Scan:
                         last_file_per_game[game_root] = files_to_scan_list[i]
                         break
         
-        if os.path.exists(LAST_STOP_FILE_PATH):
-            with open(LAST_STOP_FILE_PATH, 'r') as last_stop_file:
-                last_stopped_file = last_stop_file.read().strip()
-                if last_stopped_file in files_to_scan_list:
-                    last_index = files_to_scan_list.index(last_stopped_file)
-                    files_to_scan_list = files_to_scan_list[last_index + 1:]
-                    print(f"   [i] Resuming from last scanned file: {last_stopped_file}")
-                else:
-                    print("   [i] Last scanned file not found in current scan list. Starting from beginning.")
+        os.makedirs(os.path.dirname(LAST_STOP_FILE_PATH), exist_ok=True)
+        with open(LAST_STOP_FILE_PATH, 'r', encoding='utf-8') as last_stop_file:
+            last_stopped_file = last_stop_file.read().strip()
+            if last_stopped_file in files_to_scan_list:
+                last_index = files_to_scan_list.index(last_stopped_file)
+                files_to_scan_list = files_to_scan_list[last_index + 1:]
+                print(f"   [i] Resuming from last scanned file: {last_stopped_file}")
+            else:
+                logging.warning("   [i] Last scanned file not found in current scan list. Starting from beginning.")
 
         print(f"   [i] Total unique files to scan: {len(files_to_scan_list)}\n")
 
@@ -288,7 +348,6 @@ class Scan:
             ext = filename.lower().split('.')[-1]
             red = 0
        
-            # ONLY SCAN IF SUSPICIOUS OR HIGH PRIORITY
             if 1 or priority == 1:
                 print(f"[START] -> {filename}  (Priority {priority})")
                 print(f"        Path: {filepath}")
@@ -337,7 +396,7 @@ class Scan:
                 print("   [i] Last file in game scanned, no threats found.")
                 with open(LOG_FILE_PATH, 'a') as log_file:
                     log_file.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')} Game scanned clean: {directory}\n")
-            with open(LAST_STOP_FILE_PATH, 'w') as last_stop_file:
+            with open(LAST_STOP_FILE_PATH, 'w', encoding='utf-8') as last_stop_file:
                 last_stop_file.write(filepath)
         print("-" * 60)
 
