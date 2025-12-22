@@ -4,4 +4,6 @@ records - Copy.txt
 
 config.py
 __pycache__
-data
+
+last_stop_file.txt
+scan_log.txt
