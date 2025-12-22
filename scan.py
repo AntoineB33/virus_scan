@@ -217,6 +217,8 @@ class Scan:
         clean_regex = re.compile(rf"^{timestamp_pattern} Game scanned clean: (.+)$")
 
         os.makedirs(os.path.dirname(LOG_FILE_PATH), exist_ok=True)
+        with open(LOG_FILE_PATH, 'w'):
+            pass
 
         with open(LOG_FILE_PATH, 'r') as file:
             for line_number, line in enumerate(file, 1):
@@ -333,6 +335,8 @@ class Scan:
                         break
         
         os.makedirs(os.path.dirname(LAST_STOP_FILE_PATH), exist_ok=True)
+        with open(LAST_STOP_FILE_PATH, 'w'):
+            pass
         with open(LAST_STOP_FILE_PATH, 'r', encoding='utf-8') as last_stop_file:
             last_stopped_file = last_stop_file.read().strip()
             if last_stopped_file in files_to_scan_list:
@@ -395,6 +399,10 @@ class Scan:
             else:
                 print(f"[SKIP] -> {filename} (Low Risk Media File)")
 
+
+            os.makedirs(os.path.dirname(LOG_FILE_PATH), exist_ok=True)
+            with open(LOG_FILE_PATH, 'w'):
+                pass
             if red > 0:
                 print("   [!!!] MALICIOUS FILE FOUND")
                 splited_path = filepath.strip(os.sep).split(os.sep)
