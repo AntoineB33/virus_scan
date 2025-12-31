@@ -123,7 +123,23 @@ class Scan:
     def get_report_by_hash(self, file_hash, filepath):
         headers = {'x-apikey': API_KEY}
         url = f"{FILES_URL}/{file_hash}"
-        response = requests.get(url, headers=headers)
+
+        # --- RETRY LOGIC ADDED HERE ---
+        max_retries = 3
+        response = None
+        
+        for attempt in range(max_retries):
+            try:
+                response = requests.get(url, headers=headers)
+                break  # Request successful, exit the retry loop
+            except requests.exceptions.RequestException as e:
+                print(f"   [!] Network connection failed: {e}")
+                if attempt < max_retries - 1:
+                    print(f"   [i] Retrying in 5 seconds... ({attempt + 1}/{max_retries})")
+                    time.sleep(5)
+                else:
+                    raise Exception("NETWORK_ERROR_MAX_RETRIES")
+        # ------------------------------
 
         if self.check_rate_limit(response):
             return self.get_report_by_hash(file_hash, filepath)
@@ -153,28 +169,53 @@ class Scan:
 
         try:
             with open(filepath, 'rb') as file_data:
+                # We define the dictionary here, but the file pointer needs management
                 files = {'file': (os.path.basename(filepath), file_data)}
-                response = requests.post(FILES_URL, headers=headers, files=files)
+                
+                # --- RETRY LOGIC START ---
+                max_retries = 3
+                response = None
+                
+                for attempt in range(max_retries):
+                    try:
+                        # [!!!] CRITICAL FIX: Rewind file to start before every attempt
+                        file_data.seek(0) 
+                        
+                        response = requests.post(FILES_URL, headers=headers, files=files)
+                        break  # Request successful, exit the retry loop
+                    except requests.exceptions.RequestException as e:
+                        print(f"   [!] Network connection failed: {e}")
+                        if attempt < max_retries - 1:
+                            print(f"   [i] Retrying in 5 seconds... ({attempt + 1}/{max_retries})")
+                            time.sleep(5)
+                        else:
+                            raise Exception("NETWORK_ERROR_MAX_RETRIES")
+                # --- RETRY LOGIC END ---
+
+                # Note: We check response outside the 'with' block's retry loop, 
+                # but still inside the 'with' block scope.
+                
+                # 1. Check Rate Limits (429)
+                if self.check_rate_limit(response):
+                    # Recursive call. The current 'with open' will close when this function 
+                    # returns, and the new call will open a fresh handle. This is safe.
+                    return self.upload_file(filepath)
+
+                # 2. Check Server Errors (502, 500, 503, 504)
+                if 500 <= response.status_code < 600:
+                    print(f"   [!] VirusTotal Server Error ({response.status_code}). Retrying in 60 seconds...")
+                    time.sleep(60)
+                    return self.upload_file(filepath)
+                
+                if response.status_code == 200:
+                    return response.json()['data']['id']
+                else:
+                    print(f"   [Error] Upload failed: {response.status_code} - {response.text}")
+                    raise Exception("UPLOAD_FAILED")
+
         except IOError as e:
             print(f"   [Error] Could not open file for upload: {e}")
             raise Exception("FILE_OPEN_ERROR")
-
-        # 1. Check Rate Limits (429)
-        if self.check_rate_limit(response):
-            return self.upload_file(filepath)
-
-        # 2. Check Server Errors (502, 500, 503, 504)
-        # If VirusTotal is having a hiccup, wait 60s and try again.
-        if 500 <= response.status_code < 600:
-            print(f"   [!] VirusTotal Server Error ({response.status_code}). Retrying in 60 seconds...")
-            time.sleep(60)
-            return self.upload_file(filepath)
-        
-        if response.status_code == 200:
-            return response.json()['data']['id']
-        else:
-            print(f"   [Error] Upload failed: {response.status_code} - {response.text}")
-            raise Exception("UPLOAD_FAILED")
 
     def get_analysis_result(self, analysis_id):
         headers = {'x-apikey': API_KEY}
@@ -334,16 +375,18 @@ class Scan:
                         last_file_per_game[game_root] = files_to_scan_list[i]
                         break
         
-        os.makedirs(os.path.dirname(LAST_STOP_FILE_PATH), exist_ok=True)
-        with open(LAST_STOP_FILE_PATH, 'w'):
-            pass
+        if not os.path.exists(LAST_STOP_FILE_PATH):
+            os.makedirs(os.path.dirname(LAST_STOP_FILE_PATH), exist_ok=True)
+            with open(LAST_STOP_FILE_PATH, 'w'):
+                pass
+
         with open(LAST_STOP_FILE_PATH, 'r', encoding='utf-8') as last_stop_file:
             last_stopped_file = last_stop_file.read().strip()
             if last_stopped_file in files_to_scan_list:
                 last_index = files_to_scan_list.index(last_stopped_file)
                 files_to_scan_list = files_to_scan_list[last_index + 1:]
                 print(f"   [i] Resuming from last scanned file: {last_stopped_file}")
-            else:
+            elif last_stopped_file:
                 logging.warning("   [i] Last scanned file not found in current scan list. Starting from beginning.")
 
         print(f"   [i] Total unique files to scan: {len(files_to_scan_list)}\n")
