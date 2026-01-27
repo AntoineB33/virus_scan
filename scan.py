@@ -4,9 +4,12 @@ import re
 import time
 import hashlib
 import requests
-import config
 from pathlib import Path
-import json
+from requests.models import Response
+
+import keys
+import constants
+import config
 
 # Try to import win32com for shortcut handling
 try:
@@ -18,11 +21,12 @@ except ImportError:
     print("    Run: pip install pywin32")
 
 # ================= CONFIGURATION =================
-API_KEY = config.API_KEY
-LOG_FILE_PATH = config.LOG_FILE_PATH
-LAST_STOP_FILE_PATH = config.LAST_STOP_FILE_PATH
-FOLDER_TO_SCAN = config.FOLDER_TO_SCAN
-GAME_PATH_EXAMPLE = config.GAME_PATH_EXAMPLE
+API_KEY = keys.API_KEY
+LOG_FILE_PATH = os.path.abspath(constants.LOG_FILE_PATH)
+LAST_STOP_FILE_PATH = os.path.abspath(constants.LAST_STOP_FILE_PATH)
+FOLDER_TO_SCAN = os.path.abspath(config.FOLDER_TO_SCAN)
+GAME_PATH_EXAMPLE = os.path.abspath(config.GAME_PATH_EXAMPLE)
+
 # =================================================
 
 # Priority mapping (lower number = higher scan priority)
@@ -90,7 +94,7 @@ class Scan:
             raise Exception("SHORTCUT_PARSE_ERROR")
 
 
-    def check_rate_limit(self, response):
+    def check_rate_limit(self, response: Response):
         """
         Handles Rate Limits (wait and retry) and Quota Exits (stop script).
         """
@@ -126,7 +130,7 @@ class Scan:
 
         # --- RETRY LOGIC ADDED HERE ---
         max_retries = 3
-        response = None
+        response = Response()
         
         for attempt in range(max_retries):
             try:
@@ -154,6 +158,9 @@ class Scan:
             print(f"   [Error] Check failed: {response.status_code} - {response.text}")
             raise Exception("CHECK_FAILED")
 
+    def log_message(self, message):
+        with open(LOG_FILE_PATH, 'a') as log_file:
+            log_file.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')} {message}\n")
 
     def upload_file(self, filepath):
         headers = {'x-apikey': API_KEY}
@@ -165,7 +172,8 @@ class Scan:
 
         if filesize > 32 * 1024 * 1024:
             print("   [Skip] File too large for standard API (limit 32MB)")
-            raise Exception("FILE_TOO_LARGE")
+            self.log_message(f"{constants.LOG_MSG_TOO_LONG_ERROR} : {filepath}")
+            raise Exception(constants.LOG_MSG_TOO_LONG_ERROR)
 
         try:
             with open(filepath, 'rb') as file_data:
@@ -174,7 +182,7 @@ class Scan:
                 
                 # --- RETRY LOGIC START ---
                 max_retries = 3
-                response = None
+                response = Response()
                 
                 for attempt in range(max_retries):
                     try:
@@ -258,7 +266,7 @@ class Scan:
         clean_regex = re.compile(rf"^{timestamp_pattern} Game scanned clean: (.+)$")
 
         os.makedirs(os.path.dirname(LOG_FILE_PATH), exist_ok=True)
-        with open(LOG_FILE_PATH, 'w'):
+        with open(LOG_FILE_PATH, 'a'):
             pass
 
         with open(LOG_FILE_PATH, 'r') as file:
@@ -375,10 +383,9 @@ class Scan:
                         last_file_per_game[game_root] = files_to_scan_list[i]
                         break
         
-        if not os.path.exists(LAST_STOP_FILE_PATH):
-            os.makedirs(os.path.dirname(LAST_STOP_FILE_PATH), exist_ok=True)
-            with open(LAST_STOP_FILE_PATH, 'w'):
-                pass
+        os.makedirs(os.path.dirname(LAST_STOP_FILE_PATH), exist_ok=True)
+        with open(LAST_STOP_FILE_PATH, 'a'):
+            pass
 
         with open(LAST_STOP_FILE_PATH, 'r', encoding='utf-8') as last_stop_file:
             last_stopped_file = last_stop_file.read().strip()
@@ -426,7 +433,13 @@ class Scan:
 
                 if stats is None:
                     print("   [-] No existing report -> Uploading file...")
-                    analysis_id = self.upload_file(filepath)
+                    try:
+                        analysis_id = self.upload_file(filepath)
+                    except Exception as e:
+                        if str(e) == constants.LOG_MSG_TOO_LONG_ERROR:
+                            with open(LAST_STOP_FILE_PATH, 'w', encoding='utf-8') as last_stop_file:
+                                last_stop_file.write(filepath)
+                            continue
 
                     time.sleep(16)
                     stats = self.get_analysis_result(analysis_id)
@@ -443,21 +456,16 @@ class Scan:
                 print(f"[SKIP] -> {filename} (Low Risk Media File)")
 
 
-            os.makedirs(os.path.dirname(LOG_FILE_PATH), exist_ok=True)
-            with open(LOG_FILE_PATH, 'w'):
-                pass
             if red > 0:
                 print("   [!!!] MALICIOUS FILE FOUND")
                 splited_path = filepath.strip(os.sep).split(os.sep)
                 game_root = os.sep.join(splited_path[:self.game_root_depth])
                 files_to_scan_list = [path for path in files_to_scan_list if not path.startswith(game_root)]
-                with open(LOG_FILE_PATH, 'a') as log_file:
-                    log_file.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')} Malicious file detected: {filepath} | {red}/{total} engines flagged\n")
+                self.log_message(f"Malicious file detected: {filepath} | {red}/{total} engines flagged")
             elif filepath in last_file_per_game:
                 directory = last_file_per_game[filepath]
                 print("   [i] Last file in game scanned, no threats found.")
-                with open(LOG_FILE_PATH, 'a') as log_file:
-                    log_file.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')} Game scanned clean: {directory}\n")
+                self.log_message(f"Game scanned clean: {directory}")
             with open(LAST_STOP_FILE_PATH, 'w', encoding='utf-8') as last_stop_file:
                 last_stop_file.write(filepath)
         print("-" * 60)
