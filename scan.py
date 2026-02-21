@@ -157,9 +157,9 @@ class Scan:
         else:
             print(f"   [Error] Check failed: {response.status_code} - {response.text}")
             raise Exception("CHECK_FAILED")
-
+    
     def log_message(self, message):
-        with open(LOG_FILE_PATH, 'a') as log_file:
+        with open(LOG_FILE_PATH, 'a', encoding='utf-8') as log_file:
             log_file.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')} {message}\n")
 
     def upload_file(self, filepath):
@@ -266,10 +266,11 @@ class Scan:
         clean_regex = re.compile(rf"^{timestamp_pattern} Game scanned clean: (.+)$")
 
         os.makedirs(os.path.dirname(LOG_FILE_PATH), exist_ok=True)
-        with open(LOG_FILE_PATH, 'a'):
+        with open(LOG_FILE_PATH, 'a', encoding='utf-8'):
             pass
 
-        with open(LOG_FILE_PATH, 'r') as file:
+        # Add encoding here
+        with open(LOG_FILE_PATH, 'r', encoding='utf-8') as file:
             for line_number, line in enumerate(file, 1):
                 line = line.strip()
                 if not line:
@@ -384,7 +385,7 @@ class Scan:
                         break
         
         os.makedirs(os.path.dirname(LAST_STOP_FILE_PATH), exist_ok=True)
-        with open(LAST_STOP_FILE_PATH, 'a'):
+        with open(LAST_STOP_FILE_PATH, 'a', encoding='utf-8'):
             pass
 
         with open(LAST_STOP_FILE_PATH, 'r', encoding='utf-8') as last_stop_file:
