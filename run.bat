@@ -1,6 +1,9 @@
 @echo off
 setlocal
 
+:: Set the program path
+set "PROGRAM_PATH=scan.py"
+
 :: Switch to the directory where this batch file is located
 cd /d "%~dp0"
 
@@ -46,16 +49,16 @@ if not exist ".venv\" (
 )
 
 echo [INFO] Starting the program...
-if not exist "scan.py" (
-    echo [ERROR] scan.py not found in the current directory.
+if not exist PROGRAM_PATH (
+    echo [ERROR] %PROGRAM_PATH% not found in the current directory.
     pause
     exit /b 1
 )
 
 :: uv run automatically detects and uses the .venv folder in the current directory
-uv run scan.py
+uv run %PROGRAM_PATH%
 if %errorlevel% neq 0 (
-    echo [ERROR] scan.py exited with an error.
+    echo [ERROR] %PROGRAM_PATH% exited with an error.
 )
 
 pause
