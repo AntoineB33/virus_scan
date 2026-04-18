@@ -49,14 +49,14 @@ if not exist ".venv\" (
 )
 
 echo [INFO] Starting the program...
-if not exist PROGRAM_PATH (
+if not exist "%PROGRAM_PATH%" (
     echo [ERROR] %PROGRAM_PATH% not found in the current directory.
     pause
     exit /b 1
 )
 
 :: uv run automatically detects and uses the .venv folder in the current directory
-uv run %PROGRAM_PATH%
+uv run "%PROGRAM_PATH%"
 if %errorlevel% neq 0 (
     echo [ERROR] %PROGRAM_PATH% exited with an error.
 )
