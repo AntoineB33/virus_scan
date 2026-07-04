@@ -1,0 +1,2 @@
+FOLDER_TO_SCAN = r"C:\Games_WD\to_scan"
+GAME_PATH_EXAMPLE = r"C:\Games_WD\to_scan\pvp\example_game"

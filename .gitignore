@@ -4,3 +4,4 @@ __pycache__
 last_stop_file.txt
 scan_log.txt
 keys.py
+config.py
