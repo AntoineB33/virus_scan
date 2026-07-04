@@ -1,4 +1,6 @@
 __pycache__
+.venv
 
 last_stop_file.txt
 scan_log.txt
+keys.py
