@@ -369,9 +369,12 @@ class Scan:
 
         root = Path(FOLDER_TO_SCAN)
         
-        # Create a glob pattern like "*/*" for depth 2
-        # The pattern becomes "*" repeated 'depth' times, joined by slash
-        pattern = "/".join(["*"] * (self.game_root_depth - 1))
+        # Calculate how many folder levels deep the games are relative to the scan folder
+        folder_depth = len(FOLDER_TO_SCAN.strip(os.sep).split(os.sep))
+        relative_depth = self.game_root_depth - folder_depth
+        
+        # Create a glob pattern that searches exactly that many levels deep (e.g., "*")
+        pattern = "/".join(["*"] * relative_depth)
         
         for path in root.glob(pattern):
             if path.is_dir():
